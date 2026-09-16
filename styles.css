@@ -658,6 +658,27 @@ body {
     transform: scale(1.1);
 }
 
+/* Visible labeled body part buttons */
+.body-hotspot-label {
+    position: absolute;
+    background: linear-gradient(135deg, #FF6B9D, #FF8E72);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.body-hotspot-label:active {
+    transform: scale(1.15);
+    background: linear-gradient(135deg, #9B59B6, #667eea);
+}
+
 /* ==========================================
    Shapes Section
    ========================================== */
