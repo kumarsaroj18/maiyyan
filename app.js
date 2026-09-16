@@ -63,25 +63,24 @@ const englishWordsData = [
 
 // ==========================================
 // Data: English Body Parts
+// Using free clipart images for clear visuals
 // ==========================================
 const englishBodyParts = [
-    { name: 'Head', emoji: '👤', position: { top: '5%', left: '42%' } },
-    { name: 'Hair', emoji: '💇', position: { top: '0%', left: '42%' } },
-    { name: 'Eyes', emoji: '👀', position: { top: '12%', left: '42%' } },
-    { name: 'Nose', emoji: '👃', position: { top: '18%', left: '42%' } },
-    { name: 'Mouth', emoji: '👄', position: { top: '24%', left: '42%' } },
-    { name: 'Ears', emoji: '👂', position: { top: '15%', left: '25%' } },
-    { name: 'Neck', emoji: '🦒', position: { top: '32%', left: '42%' } },
-    { name: 'Shoulders', emoji: '💪', position: { top: '38%', left: '25%' } },
-    { name: 'Arms', emoji: '💪', position: { top: '50%', left: '15%' } },
-    { name: 'Hands', emoji: '🤚', position: { top: '65%', left: '10%' } },
-    { name: 'Fingers', emoji: '🖐️', position: { top: '68%', left: '5%' } },
-    { name: 'Chest', emoji: '👕', position: { top: '45%', left: '42%' } },
-    { name: 'Tummy', emoji: '🫃', position: { top: '55%', left: '42%' } },
-    { name: 'Legs', emoji: '🦵', position: { top: '75%', left: '35%' } },
-    { name: 'Knees', emoji: '🦿', position: { top: '78%', left: '42%' } },
-    { name: 'Feet', emoji: '🦶', position: { top: '92%', left: '35%' } },
-    { name: 'Toes', emoji: '🦶', position: { top: '95%', left: '42%' } }
+    { name: 'Head', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048127.png' },
+    { name: 'Hair', image: 'https://cdn-icons-png.flaticon.com/512/3468/3468377.png' },
+    { name: 'Eyes', image: 'https://cdn-icons-png.flaticon.com/512/2429/2429153.png' },
+    { name: 'Nose', image: 'https://cdn-icons-png.flaticon.com/512/2429/2429159.png' },
+    { name: 'Mouth', image: 'https://cdn-icons-png.flaticon.com/512/2429/2429163.png' },
+    { name: 'Ears', image: 'https://cdn-icons-png.flaticon.com/512/2429/2429139.png' },
+    { name: 'Neck', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048394.png' },
+    { name: 'Shoulders', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048371.png' },
+    { name: 'Arms', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048358.png' },
+    { name: 'Hands', image: 'https://cdn-icons-png.flaticon.com/512/2103/2103633.png' },
+    { name: 'Fingers', image: 'https://cdn-icons-png.flaticon.com/512/2103/2103620.png' },
+    { name: 'Tummy', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048386.png' },
+    { name: 'Legs', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048404.png' },
+    { name: 'Knees', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048381.png' },
+    { name: 'Feet', image: 'https://cdn-icons-png.flaticon.com/512/3048/3048376.png' }
 ];
 
 // ==========================================
@@ -707,33 +706,105 @@ function renderEnglishBodyParts() {
     const figureContainer = document.getElementById('english-body-figure');
     const cardsContainer = document.getElementById('english-body-cards');
     
-    // Render body figure with labels
+    // Render interactive cartoon body with tappable parts
     figureContainer.innerHTML = `
-        <h3 style="margin-bottom: 15px; color: #666;">👆 Tap the body parts!</h3>
-        <div class="body-figure">
-            <svg viewBox="0 0 100 160" style="width: 150px; height: 240px;">
-                <!-- Simple stick figure -->
-                <circle cx="50" cy="20" r="15" fill="#FFD93D" stroke="#333" stroke-width="2"/>
-                <line x1="50" y1="35" x2="50" y2="90" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="50" x2="25" y2="75" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="50" x2="75" y2="75" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="90" x2="30" y2="140" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="90" x2="70" y2="140" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <!-- Face -->
-                <circle cx="43" cy="17" r="3" fill="#333"/>
-                <circle cx="57" cy="17" r="3" fill="#333"/>
-                <path d="M 43 27 Q 50 32 57 27" stroke="#333" stroke-width="2" fill="none"/>
+        <h3 style="margin-bottom: 15px; color: #666;">👆 Tap body parts on the picture!</h3>
+        <div class="body-figure" style="position: relative; width: 220px; height: 350px; margin: 0 auto;">
+            <!-- Cartoon Kid Body SVG -->
+            <svg viewBox="0 0 220 350" style="width: 100%; height: 100%;">
+                <!-- Hair -->
+                <ellipse cx="110" cy="35" rx="45" ry="30" fill="#4A3728"/>
+                <ellipse cx="110" cy="45" rx="42" ry="25" fill="#5D4037"/>
+                
+                <!-- Head/Face -->
+                <ellipse cx="110" cy="65" rx="38" ry="42" fill="#FFCC80"/>
+                
+                <!-- Ears -->
+                <ellipse cx="68" cy="65" rx="8" ry="12" fill="#FFCC80"/>
+                <ellipse cx="152" cy="65" rx="8" ry="12" fill="#FFCC80"/>
+                
+                <!-- Eyes -->
+                <ellipse cx="95" cy="58" rx="8" ry="10" fill="white"/>
+                <ellipse cx="125" cy="58" rx="8" ry="10" fill="white"/>
+                <circle cx="95" cy="60" r="5" fill="#333"/>
+                <circle cx="125" cy="60" r="5" fill="#333"/>
+                <circle cx="96" cy="58" r="2" fill="white"/>
+                <circle cx="126" cy="58" r="2" fill="white"/>
+                
+                <!-- Nose -->
+                <ellipse cx="110" cy="72" rx="5" ry="6" fill="#FFB74D"/>
+                
+                <!-- Mouth (smile) -->
+                <path d="M 95 85 Q 110 100 125 85" stroke="#E57373" stroke-width="3" fill="none" stroke-linecap="round"/>
+                
+                <!-- Neck -->
+                <rect x="100" y="105" width="20" height="20" fill="#FFCC80"/>
+                
+                <!-- Body/Shirt -->
+                <path d="M 60 125 L 80 125 L 85 180 L 135 180 L 140 125 L 160 125 L 165 200 L 55 200 Z" fill="#42A5F5"/>
+                
+                <!-- Arms -->
+                <path d="M 60 125 L 30 180 L 40 185 L 75 140" fill="#FFCC80"/>
+                <path d="M 160 125 L 190 180 L 180 185 L 145 140" fill="#FFCC80"/>
+                
+                <!-- Hands -->
+                <circle cx="32" cy="185" r="12" fill="#FFCC80"/>
+                <circle cx="188" cy="185" r="12" fill="#FFCC80"/>
+                
+                <!-- Shorts/Pants -->
+                <path d="M 65 200 L 55 260 L 85 260 L 95 210 L 125 210 L 135 260 L 165 260 L 155 200 Z" fill="#5C6BC0"/>
+                
+                <!-- Legs -->
+                <rect x="60" y="260" width="25" height="60" fill="#FFCC80" rx="5"/>
+                <rect x="135" y="260" width="25" height="60" fill="#FFCC80" rx="5"/>
+                
+                <!-- Feet/Shoes -->
+                <ellipse cx="72" cy="330" rx="20" ry="12" fill="#FF7043"/>
+                <ellipse cx="147" cy="330" rx="20" ry="12" fill="#FF7043"/>
             </svg>
+            
+            <!-- Tappable hotspots -->
+            <button class="body-hotspot" style="top: 5%; left: 35%; width: 30%;" onclick="speakBodyPart('Hair')">Hair</button>
+            <button class="body-hotspot" style="top: 12%; left: 35%; width: 30%;" onclick="speakBodyPart('Head')">Head</button>
+            <button class="body-hotspot" style="top: 14%; left: 15%; width: 15%;" onclick="speakBodyPart('Ears')">Ear</button>
+            <button class="body-hotspot" style="top: 14%; left: 70%; width: 15%;" onclick="speakBodyPart('Ears')">Ear</button>
+            <button class="body-hotspot" style="top: 15%; left: 38%; width: 10%;" onclick="speakBodyPart('Eyes')">Eye</button>
+            <button class="body-hotspot" style="top: 15%; left: 52%; width: 10%;" onclick="speakBodyPart('Eyes')">Eye</button>
+            <button class="body-hotspot" style="top: 19%; left: 45%; width: 10%;" onclick="speakBodyPart('Nose')">Nose</button>
+            <button class="body-hotspot" style="top: 23%; left: 40%; width: 20%;" onclick="speakBodyPart('Mouth')">Mouth</button>
+            <button class="body-hotspot" style="top: 30%; left: 43%; width: 14%;" onclick="speakBodyPart('Neck')">Neck</button>
+            <button class="body-hotspot" style="top: 36%; left: 20%; width: 20%;" onclick="speakBodyPart('Shoulders')">Shoulder</button>
+            <button class="body-hotspot" style="top: 36%; left: 60%; width: 20%;" onclick="speakBodyPart('Shoulders')">Shoulder</button>
+            <button class="body-hotspot" style="top: 42%; left: 5%; width: 20%;" onclick="speakBodyPart('Arms')">Arm</button>
+            <button class="body-hotspot" style="top: 42%; left: 75%; width: 20%;" onclick="speakBodyPart('Arms')">Arm</button>
+            <button class="body-hotspot" style="top: 50%; left: 5%; width: 15%;" onclick="speakBodyPart('Hands')">Hand</button>
+            <button class="body-hotspot" style="top: 50%; left: 80%; width: 15%;" onclick="speakBodyPart('Hands')">Hand</button>
+            <button class="body-hotspot" style="top: 48%; left: 35%; width: 30%;" onclick="speakBodyPart('Tummy')">Tummy</button>
+            <button class="body-hotspot" style="top: 65%; left: 25%; width: 20%;" onclick="speakBodyPart('Legs')">Leg</button>
+            <button class="body-hotspot" style="top: 65%; left: 55%; width: 20%;" onclick="speakBodyPart('Legs')">Leg</button>
+            <button class="body-hotspot" style="top: 75%; left: 28%; width: 15%;" onclick="speakBodyPart('Knees')">Knee</button>
+            <button class="body-hotspot" style="top: 75%; left: 57%; width: 15%;" onclick="speakBodyPart('Knees')">Knee</button>
+            <button class="body-hotspot" style="top: 90%; left: 22%; width: 22%;" onclick="speakBodyPart('Feet')">Foot</button>
+            <button class="body-hotspot" style="top: 90%; left: 56%; width: 22%;" onclick="speakBodyPart('Feet')">Foot</button>
         </div>
     `;
     
-    // Render body part cards
+    // Render body part cards with images
     cardsContainer.innerHTML = englishBodyParts.map((part, index) => `
         <div class="body-card" onclick="handleEnglishBodyPartTap(${index})">
-            <div class="body-card-icon">${part.emoji}</div>
+            <img src="${part.image}" alt="${part.name}" class="body-card-image" onerror="this.style.display='none'">
             <div class="body-card-name">${part.name}</div>
         </div>
     `).join('');
+}
+
+// Helper function for body hotspots
+function speakBodyPart(name) {
+    speakEnglish(name);
+    // Visual feedback
+    if (Math.random() < 0.3) {
+        setTimeout(showReward, 800);
+    }
 }
 
 function handleEnglishBodyPartTap(index) {

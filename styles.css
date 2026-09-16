@@ -627,10 +627,35 @@ body {
     margin-bottom: 5px;
 }
 
+.body-card-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
 .body-card-name {
     font-size: 0.9rem;
     font-weight: bold;
     color: #333;
+}
+
+/* Body hotspots for interactive figure */
+.body-hotspot {
+    position: absolute;
+    background: rgba(255, 107, 157, 0.3);
+    border: 2px dashed rgba(255, 107, 157, 0.6);
+    border-radius: 10px;
+    color: transparent;
+    font-size: 0;
+    cursor: pointer;
+    height: 8%;
+    transition: all 0.3s ease;
+}
+
+.body-hotspot:active {
+    background: rgba(255, 107, 157, 0.6);
+    transform: scale(1.1);
 }
 
 /* ==========================================
