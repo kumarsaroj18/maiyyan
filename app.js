@@ -663,10 +663,13 @@ function handleAlphabetTap(index) {
     card.classList.add('tapped');
     setTimeout(() => card.classList.remove('tapped'), 300);
     
+    // Use lowercase for speech to avoid "Capital A" pronunciation
+    const letterForSpeech = item.letter.toLowerCase();
+    
     // Speak letter first, then "letter for word" after a pause
-    speakEnglish(item.letter);
+    speakEnglish(letterForSpeech);
     setTimeout(() => {
-        speakEnglish(`${item.letter} for ${item.word}`);
+        speakEnglish(`${letterForSpeech} for ${item.word}`);
     }, 800);
     
     // Random chance to show reward
