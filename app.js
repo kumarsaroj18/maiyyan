@@ -19,7 +19,7 @@ const alphabetsData = [
     { letter: 'J', word: 'Jug', emoji: '🫖', phonetic: '/dʒʌɡ/' },
     { letter: 'K', word: 'Kite', emoji: '🪁', phonetic: '/kaɪt/' },
     { letter: 'L', word: 'Lion', emoji: '🦁', phonetic: '/ˈlaɪən/' },
-    { letter: 'M', word: 'Mango', emoji: '🥭', phonetic: '/ˈmæŋɡoʊ/' },
+    { letter: 'M', word: 'Monkey', emoji: '🐒', phonetic: '/ˈmʌŋki/' },
     { letter: 'N', word: 'Nest', emoji: '🪺', phonetic: '/nest/' },
     { letter: 'O', word: 'Orange', emoji: '🍊', phonetic: '/ˈɒrɪndʒ/' },
     { letter: 'P', word: 'Parrot', emoji: '🦜', phonetic: '/ˈpærət/' },
