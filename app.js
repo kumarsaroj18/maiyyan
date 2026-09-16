@@ -663,11 +663,15 @@ function handleAlphabetTap(index) {
     card.classList.add('tapped');
     setTimeout(() => card.classList.remove('tapped'), 300);
     
-    speakEnglish(`${item.letter}. ${item.letter} for ${item.word}`);
+    // Speak letter first, then "letter for word" after a pause
+    speakEnglish(item.letter);
+    setTimeout(() => {
+        speakEnglish(`${item.letter} for ${item.word}`);
+    }, 800);
     
     // Random chance to show reward
     if (Math.random() < 0.3) {
-        setTimeout(showReward, 1500);
+        setTimeout(showReward, 2000);
     }
 }
 
@@ -786,10 +790,15 @@ function renderVarnamala() {
 
 function handleVarnamalaTap(index) {
     const item = hindiVarnamala[index];
-    speakHindi(`${item.letter}. ${item.letter} से ${item.word}`);
+    
+    // Speak letter first, then "letter se word" after a pause
+    speakHindi(item.letter);
+    setTimeout(() => {
+        speakHindi(`${item.letter} से ${item.word}`);
+    }, 800);
     
     if (Math.random() < 0.3) {
-        setTimeout(showReward, 1500);
+        setTimeout(showReward, 2000);
     }
 }
 
