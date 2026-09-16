@@ -63,24 +63,19 @@ const englishWordsData = [
 
 // ==========================================
 // Data: English Body Parts
-// Using real human body part images
+// Matching the body parts diagram image
 // ==========================================
 const englishBodyParts = [
     { name: 'Head', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face' },
-    { name: 'Hair', image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop' },
-    { name: 'Eyes', image: 'https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?w=200&h=200&fit=crop' },
+    { name: 'Eye', image: 'https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?w=200&h=200&fit=crop' },
+    { name: 'Ear', image: 'https://images.unsplash.com/photo-1612170153139-6f881ff067e0?w=200&h=200&fit=crop' },
     { name: 'Nose', image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=200&h=200&fit=crop' },
-    { name: 'Mouth', image: 'https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=200&h=200&fit=crop' },
-    { name: 'Ears', image: 'https://images.unsplash.com/photo-1612170153139-6f881ff067e0?w=200&h=200&fit=crop' },
-    { name: 'Neck', image: 'https://images.unsplash.com/photo-1599842057874-37393e9342df?w=200&h=200&fit=crop' },
-    { name: 'Shoulders', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop' },
-    { name: 'Arms', image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=200&h=200&fit=crop' },
-    { name: 'Hands', image: 'https://images.unsplash.com/photo-1577017040065-650ee4d43339?w=200&h=200&fit=crop' },
-    { name: 'Fingers', image: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=200&h=200&fit=crop' },
-    { name: 'Tummy', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=200&fit=crop' },
+    { name: 'Lips', image: 'https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=200&h=200&fit=crop' },
+    { name: 'Mouth', image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&h=200&fit=crop' },
+    { name: 'Arm', image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=200&h=200&fit=crop' },
+    { name: 'Hand', image: 'https://images.unsplash.com/photo-1577017040065-650ee4d43339?w=200&h=200&fit=crop' },
     { name: 'Legs', image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=200&h=200&fit=crop' },
-    { name: 'Knees', image: 'https://images.unsplash.com/photo-1597452485677-d661670d9640?w=200&h=200&fit=crop' },
-    { name: 'Feet', image: 'https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=200&h=200&fit=crop' }
+    { name: 'Foot', image: 'https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=200&h=200&fit=crop' }
 ];
 
 // ==========================================
@@ -706,30 +701,12 @@ function renderEnglishBodyParts() {
     const figureContainer = document.getElementById('english-body-figure');
     const cardsContainer = document.getElementById('english-body-cards');
     
-    // Render real child body image with tappable labeled parts
+    // Render the body parts diagram image (already has labels)
     figureContainer.innerHTML = `
-        <h3 style="margin-bottom: 15px; color: #666;">👆 Tap body parts on the picture!</h3>
-        <div class="body-figure" style="position: relative; width: 250px; height: 400px; margin: 0 auto;">
-            <!-- Real child image -->
-            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=250&h=400&fit=crop" 
-                 alt="Child body" 
-                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-            
-            <!-- Tappable labeled hotspots -->
-            <button class="body-hotspot-label" style="top: 2%; left: 30%;" onclick="speakBodyPart('Hair')">Hair</button>
-            <button class="body-hotspot-label" style="top: 8%; left: 50%;" onclick="speakBodyPart('Head')">Head</button>
-            <button class="body-hotspot-label" style="top: 12%; left: 5%;" onclick="speakBodyPart('Ears')">Ear</button>
-            <button class="body-hotspot-label" style="top: 14%; left: 30%;" onclick="speakBodyPart('Eyes')">Eyes</button>
-            <button class="body-hotspot-label" style="top: 18%; left: 55%;" onclick="speakBodyPart('Nose')">Nose</button>
-            <button class="body-hotspot-label" style="top: 22%; left: 25%;" onclick="speakBodyPart('Mouth')">Mouth</button>
-            <button class="body-hotspot-label" style="top: 28%; left: 55%;" onclick="speakBodyPart('Neck')">Neck</button>
-            <button class="body-hotspot-label" style="top: 32%; left: 5%;" onclick="speakBodyPart('Shoulders')">Shoulder</button>
-            <button class="body-hotspot-label" style="top: 38%; left: 0%;" onclick="speakBodyPart('Arms')">Arm</button>
-            <button class="body-hotspot-label" style="top: 50%; left: 65%;" onclick="speakBodyPart('Hands')">Hand</button>
-            <button class="body-hotspot-label" style="top: 45%; left: 30%;" onclick="speakBodyPart('Tummy')">Tummy</button>
-            <button class="body-hotspot-label" style="top: 60%; left: 55%;" onclick="speakBodyPart('Legs')">Leg</button>
-            <button class="body-hotspot-label" style="top: 72%; left: 5%;" onclick="speakBodyPart('Knees')">Knee</button>
-            <button class="body-hotspot-label" style="top: 90%; left: 30%;" onclick="speakBodyPart('Feet')">Feet</button>
+        <div style="text-align: center;">
+            <img src="body-parts.png" 
+                 alt="Body Parts" 
+                 style="width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
         </div>
     `;
     
