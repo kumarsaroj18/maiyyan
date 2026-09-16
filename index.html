@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FF6B6B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Learn & Play">
+    <title>🌟 Learn & Play - Fun Learning for Kids!</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-stars">✨</div>
+            <h1 class="splash-title">🌟 Learn & Play 🌟</h1>
+            <div class="splash-subtitle">Fun Learning Adventure!</div>
+            <div class="loading-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app hidden">
+        <!-- Home Screen -->
+        <section id="home" class="screen home-screen active">
+            <header class="home-header">
+                <h1>🌈 Let's Learn! 🌈</h1>
+                <div class="stars-count">
+                    <span class="star-icon">⭐</span>
+                    <span id="total-stars">0</span>
+                </div>
+            </header>
+            
+            <div class="sections-grid">
+                <!-- English Section -->
+                <div class="section-card english-card" data-section="english">
+                    <div class="card-icon">🔤</div>
+                    <div class="card-title">ABC</div>
+                    <div class="card-subtitle">English</div>
+                    <div class="card-decoration">🍎 🐶 🌻</div>
+                </div>
+                
+                <!-- Hindi Section -->
+                <div class="section-card hindi-card" data-section="hindi">
+                    <div class="card-icon">अ</div>
+                    <div class="card-title">हिंदी</div>
+                    <div class="card-subtitle">Hindi</div>
+                    <div class="card-decoration">🥭 🦚 🪷</div>
+                </div>
+                
+                <!-- Maths Section -->
+                <div class="section-card maths-card" data-section="maths">
+                    <div class="card-icon">🔢</div>
+                    <div class="card-title">123</div>
+                    <div class="card-subtitle">Maths</div>
+                    <div class="card-decoration">⭐ 🔵 🔺</div>
+                </div>
+            </div>
+            
+            <div class="home-footer">
+                <div class="animated-characters">
+                    🦋 🐝 🐞 🦄 🐰
+                </div>
+            </div>
+        </section>
+
+        <!-- English Menu -->
+        <section id="english-menu" class="screen menu-screen">
+            <header class="section-header english-header">
+                <button class="back-btn" data-back="home">←</button>
+                <h2>🔤 English 🔤</h2>
+            </header>
+            <div class="menu-grid">
+                <div class="menu-card" data-page="alphabets">
+                    <div class="menu-icon">🅰️</div>
+                    <div class="menu-title">Alphabets</div>
+                    <div class="menu-desc">A B C D...</div>
+                </div>
+                <div class="menu-card" data-page="english-words">
+                    <div class="menu-icon">📚</div>
+                    <div class="menu-title">Words</div>
+                    <div class="menu-desc">Apple, Ball...</div>
+                </div>
+                <div class="menu-card" data-page="english-body">
+                    <div class="menu-icon">🧒</div>
+                    <div class="menu-title">Body Parts</div>
+                    <div class="menu-desc">Eyes, Nose...</div>
+                </div>
+                <div class="menu-card" data-page="english-animals">
+                    <div class="menu-icon">🦁</div>
+                    <div class="menu-title">Animals</div>
+                    <div class="menu-desc">Lion, Tiger...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hindi Menu -->
+        <section id="hindi-menu" class="screen menu-screen">
+            <header class="section-header hindi-header">
+                <button class="back-btn" data-back="home">←</button>
+                <h2>अ हिंदी अ</h2>
+            </header>
+            <div class="menu-grid">
+                <div class="menu-card" data-page="varnamala">
+                    <div class="menu-icon">अ</div>
+                    <div class="menu-title">वर्णमाला</div>
+                    <div class="menu-desc">अ आ इ ई...</div>
+                </div>
+                <div class="menu-card" data-page="hindi-words">
+                    <div class="menu-icon">📖</div>
+                    <div class="menu-title">शब्द</div>
+                    <div class="menu-desc">अनार, आम...</div>
+                </div>
+                <div class="menu-card" data-page="hindi-body">
+                    <div class="menu-icon">👶</div>
+                    <div class="menu-title">शरीर के अंग</div>
+                    <div class="menu-desc">आँख, नाक...</div>
+                </div>
+                <div class="menu-card" data-page="hindi-animals">
+                    <div class="menu-icon">🐘</div>
+                    <div class="menu-title">जानवर</div>
+                    <div class="menu-desc">शेर, हाथी...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Maths Menu -->
+        <section id="maths-menu" class="screen menu-screen">
+            <header class="section-header maths-header">
+                <button class="back-btn" data-back="home">←</button>
+                <h2>🔢 Maths 🔢</h2>
+            </header>
+            <div class="menu-grid">
+                <div class="menu-card" data-page="numbers">
+                    <div class="menu-icon">🔢</div>
+                    <div class="menu-title">Numbers</div>
+                    <div class="menu-desc">1 2 3 4...</div>
+                </div>
+                <div class="menu-card" data-page="shapes">
+                    <div class="menu-icon">🔷</div>
+                    <div class="menu-title">Shapes</div>
+                    <div class="menu-desc">Circle, Square...</div>
+                </div>
+                <div class="menu-card" data-page="colors">
+                    <div class="menu-icon">🌈</div>
+                    <div class="menu-title">Colors</div>
+                    <div class="menu-desc">Red, Blue...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alphabets Page -->
+        <section id="alphabets-page" class="screen content-screen">
+            <header class="section-header english-header">
+                <button class="back-btn" data-back="english-menu">←</button>
+                <h2>🅰️ Alphabets</h2>
+            </header>
+            <div class="flashcard-container" id="alphabets-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="alphabets-dots"></div>
+        </section>
+
+        <!-- English Words Page -->
+        <section id="english-words-page" class="screen content-screen">
+            <header class="section-header english-header">
+                <button class="back-btn" data-back="english-menu">←</button>
+                <h2>📚 Words</h2>
+            </header>
+            <div class="flashcard-container" id="english-words-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="english-words-dots"></div>
+        </section>
+
+        <!-- English Body Parts Page -->
+        <section id="english-body-page" class="screen content-screen">
+            <header class="section-header english-header">
+                <button class="back-btn" data-back="english-menu">←</button>
+                <h2>🧒 Body Parts</h2>
+            </header>
+            <div class="body-section">
+                <div class="body-figure-container" id="english-body-figure">
+                    <!-- Interactive body figure -->
+                </div>
+                <div class="body-cards-container" id="english-body-cards">
+                    <!-- Body part cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- English Animals Page -->
+        <section id="english-animals-page" class="screen content-screen">
+            <header class="section-header english-header">
+                <button class="back-btn" data-back="english-menu">←</button>
+                <h2>🦁 Animals</h2>
+            </header>
+            <div class="flashcard-container" id="english-animals-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="english-animals-dots"></div>
+        </section>
+
+        <!-- Varnamala Page -->
+        <section id="varnamala-page" class="screen content-screen">
+            <header class="section-header hindi-header">
+                <button class="back-btn" data-back="hindi-menu">←</button>
+                <h2>अ वर्णमाला</h2>
+            </header>
+            <div class="flashcard-container" id="varnamala-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="varnamala-dots"></div>
+        </section>
+
+        <!-- Hindi Words Page -->
+        <section id="hindi-words-page" class="screen content-screen">
+            <header class="section-header hindi-header">
+                <button class="back-btn" data-back="hindi-menu">←</button>
+                <h2>📖 शब्द</h2>
+            </header>
+            <div class="flashcard-container" id="hindi-words-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="hindi-words-dots"></div>
+        </section>
+
+        <!-- Hindi Body Parts Page -->
+        <section id="hindi-body-page" class="screen content-screen">
+            <header class="section-header hindi-header">
+                <button class="back-btn" data-back="hindi-menu">←</button>
+                <h2>👶 शरीर के अंग</h2>
+            </header>
+            <div class="body-section">
+                <div class="body-figure-container" id="hindi-body-figure">
+                    <!-- Interactive body figure -->
+                </div>
+                <div class="body-cards-container" id="hindi-body-cards">
+                    <!-- Body part cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Hindi Animals Page -->
+        <section id="hindi-animals-page" class="screen content-screen">
+            <header class="section-header hindi-header">
+                <button class="back-btn" data-back="hindi-menu">←</button>
+                <h2>🐘 जानवर</h2>
+            </header>
+            <div class="flashcard-container" id="hindi-animals-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="hindi-animals-dots"></div>
+        </section>
+
+        <!-- Numbers Page -->
+        <section id="numbers-page" class="screen content-screen">
+            <header class="section-header maths-header">
+                <button class="back-btn" data-back="maths-menu">←</button>
+                <h2>🔢 Numbers</h2>
+            </header>
+            <div class="flashcard-container" id="numbers-container">
+                <!-- Cards generated by JS -->
+            </div>
+            <div class="navigation-dots" id="numbers-dots"></div>
+        </section>
+
+        <!-- Shapes Page -->
+        <section id="shapes-page" class="screen content-screen">
+            <header class="section-header maths-header">
+                <button class="back-btn" data-back="maths-menu">←</button>
+                <h2>🔷 Shapes</h2>
+            </header>
+            <div class="shapes-grid" id="shapes-container">
+                <!-- Shapes generated by JS -->
+            </div>
+        </section>
+
+        <!-- Colors Page -->
+        <section id="colors-page" class="screen content-screen">
+            <header class="section-header maths-header">
+                <button class="back-btn" data-back="maths-menu">←</button>
+                <h2>🌈 Colors</h2>
+            </header>
+            <div class="colors-grid" id="colors-container">
+                <!-- Colors generated by JS -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Reward Modal -->
+    <div id="reward-modal" class="reward-modal hidden">
+        <div class="reward-content">
+            <div class="reward-stars">⭐⭐⭐</div>
+            <div class="reward-text">Great Job!</div>
+            <div class="reward-emoji">🎉</div>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

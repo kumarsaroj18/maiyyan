@@ -1,0 +1,23 @@
+{
+    "name": "Learn & Play - Fun Learning for Kids",
+    "short_name": "Learn & Play",
+    "description": "Educational app for kids to learn English, Hindi, and Maths with fun flashcards and audio",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#a8edea",
+    "theme_color": "#FF6B6B",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100' rx='20'/><text y='.9em' x='10' font-size='70'>🌟</text></svg>",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["education", "kids"],
+    "lang": "en",
+    "dir": "ltr",
+    "scope": "/",
+    "prefer_related_applications": false
+}
