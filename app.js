@@ -41,7 +41,7 @@ const alphabetsData = [
 const englishWordsData = [
     { word: 'Book', emoji: '📚', category: 'objects' },
     { word: 'Chair', emoji: '🪑', category: 'furniture' },
-    { word: 'Table', emoji: '🍽️', category: 'furniture' },
+    { word: 'Sofa', emoji: '🛋️', category: 'furniture' },
     { word: 'Bed', emoji: '🛏️', category: 'furniture' },
     { word: 'Car', emoji: '🚗', category: 'vehicles' },
     { word: 'Bus', emoji: '🚌', category: 'vehicles' },
