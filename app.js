@@ -289,6 +289,7 @@ let currentCardIndex = 0;
 
 // ==========================================
 // Text-to-Speech with Enhanced Voice Selection
+// Optimized for macOS Chrome + Mobile devices
 // ==========================================
 
 // Cache for best voices
@@ -296,61 +297,98 @@ let bestEnglishVoice = null;
 let bestHindiVoice = null;
 let voicesLoaded = false;
 
+// Audio context for volume boost
+let audioContext = null;
+let gainNode = null;
+
+// Initialize audio boost (helps with low volume on some systems)
+function initAudioBoost() {
+    try {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioContext.createGain();
+        gainNode.gain.value = 2.0; // 2x volume boost
+        gainNode.connect(audioContext.destination);
+    } catch (e) {
+        console.log('AudioContext not available for volume boost');
+    }
+}
+
 // Load and select best voices
 function loadVoices() {
     return new Promise((resolve) => {
-        const voices = window.speechSynthesis.getVoices();
-        if (voices.length > 0) {
-            selectBestVoices(voices);
-            resolve();
-        } else {
-            // Wait for voices to load (needed on some browsers)
+        const tryLoad = () => {
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+                selectBestVoices(voices);
+                resolve();
+                return true;
+            }
+            return false;
+        };
+        
+        if (!tryLoad()) {
+            // Wait for voices to load (needed on Chrome)
             window.speechSynthesis.onvoiceschanged = () => {
-                const loadedVoices = window.speechSynthesis.getVoices();
-                selectBestVoices(loadedVoices);
+                tryLoad();
                 resolve();
             };
+            // Fallback timeout
+            setTimeout(() => {
+                tryLoad();
+                resolve();
+            }, 1000);
         }
     });
 }
 
 function selectBestVoices(voices) {
-    // Priority order for English voices (prefer natural/premium voices)
+    console.log('Available voices:', voices.map(v => `${v.name} (${v.lang})`));
+    
+    // Priority order for English voices on macOS Chrome
+    // These are the best sounding voices on macOS
     const englishPriority = [
-        'Samantha',           // iOS natural voice
-        'Karen',              // iOS Australian
-        'Daniel',             // iOS British
+        // macOS Premium voices (must be downloaded in System Preferences > Accessibility > Spoken Content)
+        'Samantha (Enhanced)',
+        'Samantha',
+        'Ava (Premium)',
+        'Ava',
+        'Allison',
+        'Susan',
+        'Tom',
+        // macOS standard good voices
+        'Alex',              // Classic macOS voice, very clear
+        'Victoria',
+        'Karen',             // Australian, very clear
+        'Daniel',            // British, clear
+        'Moira',             // Irish
+        'Tessa',             // South African
+        // Google voices (if available)
         'Google UK English Female',
-        'Google UK English Male', 
+        'Google UK English Male',
         'Google US English',
-        'Microsoft Zira',     // Windows natural
-        'Microsoft David',
-        'Rishi',              // Indian English on iOS
-        'Veena',              // Indian English
-        'en-IN',              // Indian English (for better word pronunciation)
-        'en-GB',              // British English
-        'en-US'               // American English
+        // Indian English
+        'Rishi',
+        'Veena',
+        // Fallbacks
+        'en-US',
+        'en-GB'
     ];
     
     // Priority order for Hindi voices
     const hindiPriority = [
-        'Lekha',              // iOS Hindi
+        'Lekha',              // macOS Hindi voice
         'Google हिन्दी',
-        'Microsoft Hemant',
-        'Microsoft Kalpana',
         'hi-IN',
         'hi'
     ];
     
     // Find best English voice
-    const englishVoices = voices.filter(v => 
-        v.lang.startsWith('en') || 
-        englishPriority.some(p => v.name.includes(p))
-    );
+    const englishVoices = voices.filter(v => v.lang.startsWith('en'));
     
+    // Try to find by priority
     for (const priority of englishPriority) {
         const found = englishVoices.find(v => 
-            v.name.includes(priority) || v.lang.includes(priority)
+            v.name.toLowerCase().includes(priority.toLowerCase())
         );
         if (found) {
             bestEnglishVoice = found;
@@ -358,9 +396,9 @@ function selectBestVoices(voices) {
         }
     }
     
-    // Fallback to any English voice, prefer non-local for better quality
+    // If no priority match, prefer voices marked as not localService (network voices are higher quality)
+    // or pick the first available
     if (!bestEnglishVoice && englishVoices.length > 0) {
-        // Prefer remote/network voices (usually higher quality)
         bestEnglishVoice = englishVoices.find(v => !v.localService) || englishVoices[0];
     }
     
@@ -392,44 +430,48 @@ function selectBestVoices(voices) {
 function speak(text, lang = 'en-US', voice = null) {
     if (!('speechSynthesis' in window)) return;
     
+    // Resume audio context on user interaction (needed for Chrome)
+    if (audioContext && audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
+    
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
     
-    const utterance = new SpeechSynthesisUtterance(text);
-    
-    // Set the best voice if available
-    if (voice) {
-        utterance.voice = voice;
-    }
-    
-    utterance.lang = lang;
-    utterance.rate = 0.75;      // Slower for kids to understand clearly
-    utterance.pitch = 1.05;     // Slightly higher, more friendly tone
-    utterance.volume = 1.0;     // Maximum volume
-    
-    // Workaround for Chrome bug where speech cuts off
-    // Break long text into shorter chunks
-    if (text.length > 100) {
-        const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-        sentences.forEach((sentence, index) => {
-            setTimeout(() => {
-                const sentenceUtterance = new SpeechSynthesisUtterance(sentence.trim());
-                if (voice) sentenceUtterance.voice = voice;
-                sentenceUtterance.lang = lang;
-                sentenceUtterance.rate = 0.75;
-                sentenceUtterance.pitch = 1.05;
-                sentenceUtterance.volume = 1.0;
-                window.speechSynthesis.speak(sentenceUtterance);
-            }, index * 100);
-        });
-    } else {
+    // Small delay to ensure cancel completes (Chrome fix)
+    setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Set the best voice if available
+        if (voice) {
+            utterance.voice = voice;
+        }
+        
+        utterance.lang = lang;
+        utterance.rate = 0.85;      // Slightly slower, but not too slow
+        utterance.pitch = 1.1;      // Slightly higher, friendly tone for kids
+        utterance.volume = 1.0;     // Maximum volume
+        
+        // Event handlers for debugging
+        utterance.onstart = () => console.log('Speaking:', text);
+        utterance.onerror = (e) => console.error('Speech error:', e);
+        
         window.speechSynthesis.speak(utterance);
-    }
-    
-    // Chrome fix: keep speech alive
-    if (window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-    }
+        
+        // Chrome bug fix: Chrome sometimes pauses speech randomly
+        // This keeps it going
+        const resumeInterval = setInterval(() => {
+            if (!window.speechSynthesis.speaking) {
+                clearInterval(resumeInterval);
+            } else if (window.speechSynthesis.paused) {
+                window.speechSynthesis.resume();
+            }
+        }, 100);
+        
+        // Clear interval after max 10 seconds
+        setTimeout(() => clearInterval(resumeInterval), 10000);
+        
+    }, 50);
 }
 
 function speakEnglish(text) {
@@ -457,6 +499,13 @@ function speakHindi(text) {
 // Initialize voices when page loads
 if ('speechSynthesis' in window) {
     loadVoices();
+    
+    // Initialize audio boost on first user interaction
+    document.addEventListener('click', () => {
+        if (!audioContext) {
+            initAudioBoost();
+        }
+    }, { once: true });
 }
 
 // ==========================================
