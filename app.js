@@ -7,101 +7,132 @@
 // Data: English Alphabets with Words
 // ==========================================
 const alphabetsData = [
-    { letter: 'A', word: 'Apple', emoji: '🍎', phonetic: '/ˈæpəl/' },
-    { letter: 'B', word: 'Ball', emoji: '⚽', phonetic: '/bɔːl/' },
-    { letter: 'C', word: 'Cat', emoji: '🐱', phonetic: '/kæt/' },
-    { letter: 'D', word: 'Dog', emoji: '🐕', phonetic: '/dɒɡ/' },
-    { letter: 'E', word: 'Elephant', emoji: '🐘', phonetic: '/ˈelɪfənt/' },
-    { letter: 'F', word: 'Fish', emoji: '🐟', phonetic: '/fɪʃ/' },
-    { letter: 'G', word: 'Grapes', emoji: '🍇', phonetic: '/ɡreɪps/' },
-    { letter: 'H', word: 'House', emoji: '🏠', phonetic: '/haʊs/' },
-    { letter: 'I', word: 'Ice Cream', emoji: '🍦', phonetic: '/aɪs kriːm/' },
-    { letter: 'J', word: 'Jug', emoji: '🫖', phonetic: '/dʒʌɡ/' },
-    { letter: 'K', word: 'Kite', emoji: '🪁', phonetic: '/kaɪt/' },
-    { letter: 'L', word: 'Lion', emoji: '🦁', phonetic: '/ˈlaɪən/' },
-    { letter: 'M', word: 'Monkey', emoji: '🐒', phonetic: '/ˈmʌŋki/' },
-    { letter: 'N', word: 'Nest', emoji: '🪺', phonetic: '/nest/' },
-    { letter: 'O', word: 'Orange', emoji: '🍊', phonetic: '/ˈɒrɪndʒ/' },
-    { letter: 'P', word: 'Parrot', emoji: '🦜', phonetic: '/ˈpærət/' },
-    { letter: 'Q', word: 'Queen', emoji: '👸', phonetic: '/kwiːn/' },
-    { letter: 'R', word: 'Rabbit', emoji: '🐰', phonetic: '/ˈræbɪt/' },
-    { letter: 'S', word: 'Sun', emoji: '☀️', phonetic: '/sʌn/' },
-    { letter: 'T', word: 'Tiger', emoji: '🐯', phonetic: '/ˈtaɪɡər/' },
-    { letter: 'U', word: 'Umbrella', emoji: '☂️', phonetic: '/ʌmˈbrelə/' },
-    { letter: 'V', word: 'Van', emoji: '🚐', phonetic: '/væn/' },
-    { letter: 'W', word: 'Watch', emoji: '⌚', phonetic: '/wɒtʃ/' },
-    { letter: 'X', word: 'Xylophone', emoji: '🎵', phonetic: '/ˈzaɪləfoʊn/' },
-    { letter: 'Y', word: 'Yak', emoji: '🦬', phonetic: '/jæk/' },
-    { letter: 'Z', word: 'Zebra', emoji: '🦓', phonetic: '/ˈziːbrə/' }
+    { letter: 'A', word: 'Apple', emoji: '🍎', phonetic: '/ˈæpəl/', image: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&h=500&fit=crop' },
+    { letter: 'B', word: 'Ball', emoji: '⚽', phonetic: '/bɔːl/', image: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop' },
+    { letter: 'C', word: 'Cat', emoji: '🐱', phonetic: '/kæt/', image: 'https://images.unsplash.com/photo-1748347269010-fb75a6e9bbfa?w=500&h=500&fit=crop' },
+    { letter: 'D', word: 'Dog', emoji: '🐕', phonetic: '/dɒɡ/', image: 'https://images.unsplash.com/photo-1693615775129-f2004d6e3e0b?w=500&h=500&fit=crop' },
+    { letter: 'E', word: 'Elephant', emoji: '🐘', phonetic: '/ˈelɪfənt/', image: 'https://images.unsplash.com/photo-1745526180300-443ef46e6a73?w=500&h=500&fit=crop' },
+    { letter: 'F', word: 'Fish', emoji: '🐟', phonetic: '/fɪʃ/', image: 'https://images.unsplash.com/photo-1712672117537-0ab4f26d1e7c?w=500&h=500&fit=crop' },
+    { letter: 'G', word: 'Grapes', emoji: '🍇', phonetic: '/ɡreɪps/', image: 'https://images.unsplash.com/photo-1698703428304-5ea0e245e266?w=500&h=500&fit=crop' },
+    { letter: 'H', word: 'House', emoji: '🏠', phonetic: '/haʊs/', image: 'https://images.pexels.com/photos/226407/pexels-photo-226407.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop' },
+    { letter: 'I', word: 'Ice Cream', emoji: '🍦', phonetic: '/aɪs kriːm/', image: 'https://images.unsplash.com/photo-1691200324934-d1fca4986671?w=500&h=500&fit=crop' },
+    { letter: 'J', word: 'Jug', emoji: '🫖', phonetic: '/dʒʌɡ/', image: 'https://images.unsplash.com/photo-1560871401-6f0f987a5102?w=500&h=500&fit=crop' },
+    { letter: 'K', word: 'Kite', emoji: '🪁', phonetic: '/kaɪt/', image: 'https://images.unsplash.com/photo-1666626238358-24d592bd5e18?w=500&h=500&fit=crop' },
+    { letter: 'L', word: 'Lion', emoji: '🦁', phonetic: '/ˈlaɪən/', image: 'https://images.unsplash.com/photo-1760719438551-6c5408b122e9?w=500&h=500&fit=crop' },
+    { letter: 'M', word: 'Monkey', emoji: '🐒', phonetic: '/ˈmʌŋki/', image: 'https://images.unsplash.com/photo-1752779360809-9160c5a97ea8?w=500&h=500&fit=crop' },
+    { letter: 'N', word: 'Nest', emoji: '🪺', phonetic: '/nest/', image: 'https://images.unsplash.com/photo-1687816874718-c4e5f085296a?w=500&h=500&fit=crop' },
+    { letter: 'O', word: 'Orange', emoji: '🍊', phonetic: '/ˈɒrɪndʒ/', image: 'https://images.unsplash.com/photo-1557800636-894a64c1696f?w=500&h=500&fit=crop' },
+    { letter: 'P', word: 'Parrot', emoji: '🦜', phonetic: '/ˈpærət/', image: 'https://images.unsplash.com/photo-1752654286988-3e3e56485d44?w=500&h=500&fit=crop' },
+    { letter: 'Q', word: 'Queen', emoji: '👸', phonetic: '/kwiːn/', image: 'https://images.unsplash.com/photo-1640351692396-d8401b1709f4?w=500&h=500&fit=crop&crop=faces' },
+    { letter: 'R', word: 'Rabbit', emoji: '🐰', phonetic: '/ˈræbɪt/', image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=500&h=500&fit=crop' },
+    { letter: 'S', word: 'Sun', emoji: '☀️', phonetic: '/sʌn/', image: 'https://images.unsplash.com/photo-1594315590298-329f49c8dcb9?w=500&h=500&fit=crop' },
+    { letter: 'T', word: 'Tiger', emoji: '🐯', phonetic: '/ˈtaɪɡər/', image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=500&h=500&fit=crop' },
+    { letter: 'U', word: 'Umbrella', emoji: '☂️', phonetic: '/ʌmˈbrelə/', image: 'https://images.unsplash.com/photo-1539443303960-a90a4e7ecc97?w=500&h=500&fit=crop' },
+    { letter: 'V', word: 'Van', emoji: '🚐', phonetic: '/væn/', image: 'https://images.unsplash.com/photo-1674570995790-73fcb685f696?w=500&h=500&fit=crop' },
+    { letter: 'W', word: 'Watch', emoji: '⌚', phonetic: '/wɒtʃ/', image: 'https://images.unsplash.com/photo-1543428390-8bc1a79ff735?w=500&h=500&fit=crop' },
+    { letter: 'X', word: 'Xylophone', emoji: '🎵', phonetic: '/ˈzaɪləfoʊn/', image: 'https://images.pexels.com/photos/6743155/pexels-photo-6743155.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop' },
+    { letter: 'Y', word: 'Yak', emoji: '🦬', phonetic: '/jæk/', image: 'https://images.unsplash.com/photo-1741259114170-a8b20c755c58?w=500&h=500&fit=crop' },
+    { letter: 'Z', word: 'Zebra', emoji: '🦓', phonetic: '/ˈziːbrə/', image: 'https://images.unsplash.com/photo-1501706362039-c06b2d715385?w=500&h=500&fit=crop' }
 ];
 
 // ==========================================
 // Data: English Words (Common Objects)
 // ==========================================
 const englishWordsData = [
-    { word: 'Book', emoji: '📚', category: 'objects' },
-    { word: 'Chair', emoji: '🪑', category: 'furniture' },
-    { word: 'Sofa', emoji: '🛋️', category: 'furniture' },
-    { word: 'Bed', emoji: '🛏️', category: 'furniture' },
-    { word: 'Car', emoji: '🚗', category: 'vehicles' },
-    { word: 'Bus', emoji: '🚌', category: 'vehicles' },
-    { word: 'Train', emoji: '🚂', category: 'vehicles' },
-    { word: 'Plane', emoji: '✈️', category: 'vehicles' },
-    { word: 'Flower', emoji: '🌸', category: 'nature' },
-    { word: 'Tree', emoji: '🌳', category: 'nature' },
-    { word: 'Star', emoji: '⭐', category: 'nature' },
-    { word: 'Moon', emoji: '🌙', category: 'nature' },
-    { word: 'Water', emoji: '💧', category: 'nature' },
-    { word: 'Milk', emoji: '🥛', category: 'food' },
-    { word: 'Bread', emoji: '🍞', category: 'food' },
-    { word: 'Rice', emoji: '🍚', category: 'food' },
-    { word: 'Banana', emoji: '🍌', category: 'food' },
-    { word: 'Cake', emoji: '🎂', category: 'food' },
-    { word: 'Shirt', emoji: '👕', category: 'clothes' },
-    { word: 'Shoes', emoji: '👟', category: 'clothes' }
+    { word: 'Book', emoji: '📚', category: 'objects', image: 'https://images.unsplash.com/photo-1660924198796-e14938ba4516?w=500&h=500&fit=crop' },
+    { word: 'Chair', emoji: '🪑', category: 'furniture', image: 'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?w=500&h=500&fit=crop' },
+    { word: 'Sofa', emoji: '🛋️', category: 'furniture', image: 'https://images.pexels.com/photos/5998023/pexels-photo-5998023.jpeg?w=500&h=500&fit=crop' },
+    { word: 'Bed', emoji: '🛏️', category: 'furniture', image: 'https://images.unsplash.com/photo-1774427697365-f3f50b6d5eca?w=500&h=500&fit=crop' },
+    { word: 'Car', emoji: '🚗', category: 'vehicles', image: 'https://images.pexels.com/photos/7925480/pexels-photo-7925480.jpeg?w=500&h=500&fit=crop' },
+    { word: 'Bus', emoji: '🚌', category: 'vehicles', image: 'https://images.unsplash.com/photo-1587232439648-04e7feaf1777?w=500&h=500&fit=crop' },
+    { word: 'Train', emoji: '🚂', category: 'vehicles', image: 'https://images.unsplash.com/photo-1662555327334-6d52c4f8a702?w=500&h=500&fit=crop' },
+    { word: 'Plane', emoji: '✈️', category: 'vehicles', image: 'https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=500&h=500&fit=crop' },
+    { word: 'Flower', emoji: '🌸', category: 'nature', image: 'https://images.unsplash.com/photo-1592042616246-8d9a8f583e8a?w=500&h=500&fit=crop' },
+    { word: 'Tree', emoji: '🌳', category: 'nature', image: 'https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?w=500&h=500&fit=crop' },
+    { word: 'Star', emoji: '⭐', category: 'nature', image: 'https://images.unsplash.com/photo-1766995596065-590702fcce47?w=500&h=500&fit=crop' },
+    { word: 'Moon', emoji: '🌙', category: 'nature', image: 'https://images.unsplash.com/photo-1477005264461-b0e201668d92?w=500&h=500&fit=crop' },
+    { word: 'Water', emoji: '💧', category: 'nature', image: 'https://images.unsplash.com/photo-1657368567330-662b92e03dcc?w=500&h=500&fit=crop' },
+    { word: 'Milk', emoji: '🥛', category: 'food', image: 'https://images.unsplash.com/photo-1576186726188-c9d70843790f?w=500&h=500&fit=crop' },
+    { word: 'Bread', emoji: '🍞', category: 'food', image: 'https://images.unsplash.com/photo-1552056413-b8b5eed0170b?w=500&h=500&fit=crop' },
+    { word: 'Rice', emoji: '🍚', category: 'food', image: 'https://images.pexels.com/photos/8956718/pexels-photo-8956718.jpeg?w=500&h=500&fit=crop' },
+    { word: 'Banana', emoji: '🍌', category: 'food', image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&h=500&fit=crop' },
+    { word: 'Cake', emoji: '🎂', category: 'food', image: 'https://images.unsplash.com/photo-1602663491496-73f07481dbea?w=500&h=500&fit=crop' },
+    { word: 'Shirt', emoji: '👕', category: 'clothes', image: 'https://images.pexels.com/photos/11671964/pexels-photo-11671964.jpeg?w=500&h=500&fit=crop' },
+    { word: 'Shoes', emoji: '👟', category: 'clothes', image: 'https://images.unsplash.com/photo-1552912276-56ef47874741?w=500&h=500&fit=crop' }
 ];
 
 // ==========================================
 // Data: English Body Parts
-// Matching the body parts diagram image
 // ==========================================
 const englishBodyParts = [
-    { name: 'Head', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face' },
-    { name: 'Eye', image: 'https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?w=200&h=200&fit=crop' },
-    { name: 'Ear', image: 'https://images.unsplash.com/photo-1612170153139-6f881ff067e0?w=200&h=200&fit=crop' },
-    { name: 'Nose', image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=200&h=200&fit=crop' },
-    { name: 'Lips', image: 'https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=200&h=200&fit=crop' },
-    { name: 'Mouth', image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&h=200&fit=crop' },
-    { name: 'Arm', image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=200&h=200&fit=crop' },
-    { name: 'Hand', image: 'https://images.unsplash.com/photo-1577017040065-650ee4d43339?w=200&h=200&fit=crop' },
-    { name: 'Legs', image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=200&h=200&fit=crop' },
-    { name: 'Foot', image: 'https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=200&h=200&fit=crop' }
+    { name: 'Head', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face' },
+    { name: 'Hair', image: 'https://images.pexels.com/photos/6923558/pexels-photo-6923558.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Eye', image: 'https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?w=400&h=400&fit=crop' },
+    { name: 'Eyebrow', image: 'https://images.unsplash.com/photo-1592999177797-0f96d5617ed3?w=400&h=400&fit=crop' },
+    { name: 'Ear', image: 'https://images.unsplash.com/photo-1634656883281-3a665dd2bb8a?w=400&h=400&fit=crop' },
+    { name: 'Nose', image: 'https://images.unsplash.com/photo-1635004468086-a4c2ba6ba428?w=400&h=400&fit=crop' },
+    { name: 'Mouth', image: 'https://images.pexels.com/photos/65665/smile-mouth-teeth-laugh-65665.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Lips', image: 'https://images.pexels.com/photos/7479536/pexels-photo-7479536.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Teeth', image: 'https://images.pexels.com/photos/12474261/pexels-photo-12474261.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Cheek', image: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?w=400&h=400&fit=crop' },
+    { name: 'Chin', image: 'https://images.unsplash.com/photo-1648210403167-0d9142f7cec5?w=400&h=400&fit=crop' },
+    { name: 'Neck', image: 'https://images.pexels.com/photos/2734173/pexels-photo-2734173.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Shoulder', image: 'https://images.pexels.com/photos/8093085/pexels-photo-8093085.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Arm', image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=400&fit=crop' },
+    { name: 'Elbow', image: 'https://images.pexels.com/photos/8626074/pexels-photo-8626074.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Hand', image: 'https://images.unsplash.com/photo-1447619297994-b829cc1ab44a?w=400&h=400&fit=crop' },
+    { name: 'Finger', image: 'https://images.pexels.com/photos/9017408/pexels-photo-9017408.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Tummy', image: 'https://images.pexels.com/photos/5846883/pexels-photo-5846883.jpeg?w=400&h=400&fit=crop' },
+    { name: 'Leg', image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=400&fit=crop' },
+    { name: 'Knee', image: 'https://images.unsplash.com/photo-1626623936480-15fd56a295f8?w=400&h=400&fit=crop' },
+    { name: 'Foot', image: 'https://images.unsplash.com/photo-1637662722004-68be528ef359?w=400&h=400&fit=crop' },
+    { name: 'Toe', image: 'https://images.unsplash.com/photo-1504751692041-39fb8c56d189?w=400&h=400&fit=crop' }
 ];
+
+// Real full-body photo with tappable labels pointing to the major parts.
+// top/left are percentages within the image, so they track correctly at
+// any container width (phone, tablet, etc). `side` picks which margin
+// the label pill sits in.
+const englishBodyDiagram = {
+    image: 'https://images.pexels.com/photos/5560007/pexels-photo-5560007.jpeg?w=800&h=1200&fit=crop',
+    labels: [
+        { name: 'Hair', top: 5, left: 50, side: 'left' },
+        { name: 'Eye', top: 15, left: 44, side: 'left' },
+        { name: 'Ear', top: 19, left: 60, side: 'right' },
+        { name: 'Mouth', top: 24, left: 48, side: 'left' },
+        { name: 'Shoulder', top: 29, left: 33, side: 'left' },
+        { name: 'Tummy', top: 40, left: 50, side: 'right' },
+        { name: 'Arm', top: 45, left: 30, side: 'left' },
+        { name: 'Hand', top: 50, left: 47, side: 'right' },
+        { name: 'Leg', top: 70, left: 45, side: 'left' },
+        { name: 'Foot', top: 93, left: 43, side: 'right' }
+    ]
+};
 
 // ==========================================
 // Data: English Animals
 // ==========================================
 const englishAnimals = [
-    { name: 'Lion', emoji: '🦁', sound: 'Roar!' },
-    { name: 'Tiger', emoji: '🐯', sound: 'Roar!' },
-    { name: 'Elephant', emoji: '🐘', sound: 'Trumpet!' },
-    { name: 'Monkey', emoji: '🐒', sound: 'Ooh ooh!' },
-    { name: 'Dog', emoji: '🐕', sound: 'Woof woof!' },
-    { name: 'Cat', emoji: '🐱', sound: 'Meow!' },
-    { name: 'Cow', emoji: '🐄', sound: 'Moo!' },
-    { name: 'Horse', emoji: '🐴', sound: 'Neigh!' },
-    { name: 'Sheep', emoji: '🐑', sound: 'Baa!' },
-    { name: 'Pig', emoji: '🐷', sound: 'Oink!' },
-    { name: 'Duck', emoji: '🦆', sound: 'Quack!' },
-    { name: 'Chicken', emoji: '🐔', sound: 'Cluck!' },
-    { name: 'Bird', emoji: '🐦', sound: 'Tweet!' },
-    { name: 'Fish', emoji: '🐟', sound: 'Blub!' },
-    { name: 'Frog', emoji: '🐸', sound: 'Ribbit!' },
-    { name: 'Bear', emoji: '🐻', sound: 'Growl!' },
-    { name: 'Rabbit', emoji: '🐰', sound: 'Squeak!' },
-    { name: 'Giraffe', emoji: '🦒', sound: 'Hum!' },
-    { name: 'Zebra', emoji: '🦓', sound: 'Bark!' },
-    { name: 'Peacock', emoji: '🦚', sound: 'Scream!' }
+    { name: 'Lion', emoji: '🦁', sound: 'Roar!', image: 'https://images.unsplash.com/photo-1618641662184-bafefb91a542?w=500&h=500&fit=crop' },
+    { name: 'Tiger', emoji: '🐯', sound: 'Roar!', image: 'https://images.unsplash.com/photo-1686648420191-3a4d35073fd6?w=500&h=500&fit=crop' },
+    { name: 'Elephant', emoji: '🐘', sound: 'Trumpet!', image: 'https://images.unsplash.com/photo-1581852017103-68ac65514cf7?w=500&h=500&fit=crop' },
+    { name: 'Monkey', emoji: '🐒', sound: 'Ooh ooh!', image: 'https://images.unsplash.com/photo-1554457945-ba5df6648602?w=500&h=500&fit=crop' },
+    { name: 'Dog', emoji: '🐕', sound: 'Woof woof!', image: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=500&h=500&fit=crop' },
+    { name: 'Cat', emoji: '🐱', sound: 'Meow!', image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&h=500&fit=crop' },
+    { name: 'Cow', emoji: '🐄', sound: 'Moo!', image: 'https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?w=500&h=500&fit=crop' },
+    { name: 'Horse', emoji: '🐴', sound: 'Neigh!', image: 'https://images.unsplash.com/photo-1562163170-4a023d7c99e7?w=500&h=500&fit=crop' },
+    { name: 'Sheep', emoji: '🐑', sound: 'Baa!', image: 'https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=500&h=500&fit=crop' },
+    { name: 'Pig', emoji: '🐷', sound: 'Oink!', image: 'https://images.unsplash.com/photo-1587213128862-80345e23a71a?w=500&h=500&fit=crop' },
+    { name: 'Duck', emoji: '🦆', sound: 'Quack!', image: 'https://images.unsplash.com/photo-1521730365094-d6978fa2ac8d?w=500&h=500&fit=crop' },
+    { name: 'Chicken', emoji: '🐔', sound: 'Cluck!', image: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500&h=500&fit=crop' },
+    { name: 'Bird', emoji: '🐦', sound: 'Tweet!', image: 'https://images.unsplash.com/photo-1574068468026-2d19b85e69bf?w=500&h=500&fit=crop' },
+    { name: 'Fish', emoji: '🐟', sound: 'Blub!', image: 'https://images.unsplash.com/photo-1625369708811-65ebfc5ca632?w=500&h=500&fit=crop' },
+    { name: 'Frog', emoji: '🐸', sound: 'Ribbit!', image: 'https://images.unsplash.com/photo-1545006398-2cf47cd87b90?w=500&h=500&fit=crop' },
+    { name: 'Bear', emoji: '🐻', sound: 'Growl!', image: 'https://images.unsplash.com/photo-1611504262166-fa362a217f5c?w=500&h=500&fit=crop' },
+    { name: 'Rabbit', emoji: '🐰', sound: 'Squeak!', image: 'https://images.unsplash.com/photo-1452857297128-d9c29adba80b?w=500&h=500&fit=crop' },
+    { name: 'Giraffe', emoji: '🦒', sound: 'Hum!', image: 'https://images.unsplash.com/photo-1554490828-442467b562dd?w=500&h=500&fit=crop' },
+    { name: 'Zebra', emoji: '🦓', sound: 'Bark!', image: 'https://images.unsplash.com/photo-1526319238109-524eecb9b913?w=500&h=500&fit=crop' },
+    { name: 'Peacock', emoji: '🦚', sound: 'Scream!', image: 'https://images.unsplash.com/photo-1554658506-487b008909d1?w=500&h=500&fit=crop' }
 ];
 
 // ==========================================
@@ -632,6 +663,17 @@ function initializePage(page) {
 // ==========================================
 // Render Functions
 // ==========================================
+
+// Renders a real photo when `image` is available, falling back to the emoji
+// (also used if the photo fails to load, e.g. offline).
+function renderFlashcardVisual(image, emoji, altText, emojiStyle) {
+    const styleAttr = emojiStyle ? ` style=\\'${emojiStyle}\\'` : '';
+    if (image) {
+        return `<img src="${image}" alt="${altText}" class="flashcard-photo" onerror="this.outerHTML='<div class=\\'flashcard-image\\'${styleAttr}>${emoji}</div>'">`;
+    }
+    return `<div class="flashcard-image"${emojiStyle ? ` style="${emojiStyle}"` : ''}>${emoji}</div>`;
+}
+
 function renderAlphabets() {
     const container = document.getElementById('alphabets-container');
     const dotsContainer = document.getElementById('alphabets-dots');
@@ -641,12 +683,12 @@ function renderAlphabets() {
             <div class="flashcard-letter" style="background: linear-gradient(135deg, hsl(${index * 14}, 70%, 50%), hsl(${index * 14 + 30}, 70%, 60%)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                 ${item.letter}
             </div>
-            <div class="flashcard-image">${item.emoji}</div>
+            ${renderFlashcardVisual(item.image, item.emoji, item.word)}
             <div class="flashcard-word">${item.word}</div>
             <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>
         </div>
     `).join('');
-    
+
     renderDots(dotsContainer, alphabetsData.length, 'alphabets');
     setupSwipeNavigation(container, 'alphabets');
 }
@@ -678,12 +720,12 @@ function renderEnglishWords() {
     
     container.innerHTML = englishWordsData.map((item, index) => `
         <div class="flashcard" data-index="${index}" onclick="handleEnglishWordTap(${index})">
-            <div class="flashcard-image" style="font-size: 6rem;">${item.emoji}</div>
+            ${renderFlashcardVisual(item.image, item.emoji, item.word, 'font-size: 6rem;')}
             <div class="flashcard-word">${item.word}</div>
             <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>
         </div>
     `).join('');
-    
+
     renderDots(dotsContainer, englishWordsData.length, 'english-words');
     setupSwipeNavigation(container, 'english-words');
 }
@@ -697,20 +739,33 @@ function handleEnglishWordTap(index) {
     }
 }
 
+// Renders the leader-line + label pill pointing from a diagram dot to
+// the margin, using only percentage coordinates so it scales with the image.
+function renderBodyDiagramLabel(label) {
+    const lineLeft = label.side === 'left' ? 12 : label.left;
+    const lineWidth = label.side === 'left' ? (label.left - 12) : (88 - label.left);
+    const pillTop = `top: ${label.top}%;`;
+    return `
+        <div class="body-label-line" style="${pillTop} left: ${lineLeft}%; width: ${lineWidth}%;"></div>
+        <div class="body-label-dot" style="${pillTop} left: ${label.left}%;" onclick="speakBodyPart('${label.name}')"></div>
+        <div class="body-label-pill side-${label.side}" style="${pillTop}" onclick="speakBodyPart('${label.name}')">${label.name}</div>
+    `;
+}
+
 function renderEnglishBodyParts() {
     const figureContainer = document.getElementById('english-body-figure');
     const cardsContainer = document.getElementById('english-body-cards');
-    
-    // Render the body parts diagram image (already has labels)
+
+    // Real full-body photo with tappable labels pointing to each part
     figureContainer.innerHTML = `
-        <div style="text-align: center;">
-            <img src="body-parts.png" 
-                 alt="Body Parts" 
-                 style="width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+        <h3 style="margin-bottom: 15px; color: #666;">👆 Tap a label to hear it!</h3>
+        <div class="body-diagram">
+            <img src="${englishBodyDiagram.image}" alt="Full body">
+            ${englishBodyDiagram.labels.map(renderBodyDiagramLabel).join('')}
         </div>
     `;
-    
-    // Render body part cards with real images
+
+    // Real close-up photo for each individual body part
     cardsContainer.innerHTML = englishBodyParts.map((part, index) => `
         <div class="body-card" onclick="handleEnglishBodyPartTap(${index})">
             <img src="${part.image}" alt="${part.name}" class="body-card-image" onerror="this.parentElement.innerHTML='<div class=\\'body-card-name\\'>${part.name}</div>'">
@@ -743,7 +798,7 @@ function renderEnglishAnimals() {
     
     container.innerHTML = englishAnimals.map((item, index) => `
         <div class="flashcard" data-index="${index}" onclick="handleEnglishAnimalTap(${index})">
-            <div class="flashcard-image" style="font-size: 7rem;">${item.emoji}</div>
+            ${renderFlashcardVisual(item.image, item.emoji, item.name, 'font-size: 7rem;')}
             <div class="flashcard-word">${item.name}</div>
             <div class="flashcard-phonetic">${item.sound}</div>
             <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>

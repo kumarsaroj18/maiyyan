@@ -47,6 +47,14 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+    // Let the browser handle cross-origin requests (e.g. flashcard photos
+    // from Unsplash/Pexels) directly. Routing them through the service
+    // worker isn't needed for caching, and doing so for many concurrent
+    // image requests was stalling most of them instead of loading fast.
+    if (!event.request.url.startsWith(self.location.origin)) {
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request)
             .then((cachedResponse) => {
@@ -54,23 +62,22 @@ self.addEventListener('fetch', (event) => {
                 if (cachedResponse) {
                     return cachedResponse;
                 }
-                
+
                 // Otherwise fetch from network
                 return fetch(event.request)
                     .then((networkResponse) => {
-                        // Don't cache non-GET requests or external resources
-                        if (event.request.method !== 'GET' || 
-                            !event.request.url.startsWith(self.location.origin)) {
+                        // Don't cache non-GET requests
+                        if (event.request.method !== 'GET') {
                             return networkResponse;
                         }
-                        
+
                         // Clone and cache the response
                         const responseToCache = networkResponse.clone();
                         caches.open(CACHE_NAME)
                             .then((cache) => {
                                 cache.put(event.request, responseToCache);
                             });
-                        
+
                         return networkResponse;
                     })
                     .catch(() => {
