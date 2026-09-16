@@ -288,29 +288,175 @@ let totalStars = parseInt(localStorage.getItem('totalStars') || '0');
 let currentCardIndex = 0;
 
 // ==========================================
-// Text-to-Speech
+// Text-to-Speech with Enhanced Voice Selection
 // ==========================================
-function speak(text, lang = 'en-US') {
-    if ('speechSynthesis' in window) {
-        // Cancel any ongoing speech
-        window.speechSynthesis.cancel();
-        
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang;
-        utterance.rate = 0.8; // Slower for kids
-        utterance.pitch = 1.1; // Slightly higher pitch
-        utterance.volume = 1;
-        
+
+// Cache for best voices
+let bestEnglishVoice = null;
+let bestHindiVoice = null;
+let voicesLoaded = false;
+
+// Load and select best voices
+function loadVoices() {
+    return new Promise((resolve) => {
+        const voices = window.speechSynthesis.getVoices();
+        if (voices.length > 0) {
+            selectBestVoices(voices);
+            resolve();
+        } else {
+            // Wait for voices to load (needed on some browsers)
+            window.speechSynthesis.onvoiceschanged = () => {
+                const loadedVoices = window.speechSynthesis.getVoices();
+                selectBestVoices(loadedVoices);
+                resolve();
+            };
+        }
+    });
+}
+
+function selectBestVoices(voices) {
+    // Priority order for English voices (prefer natural/premium voices)
+    const englishPriority = [
+        'Samantha',           // iOS natural voice
+        'Karen',              // iOS Australian
+        'Daniel',             // iOS British
+        'Google UK English Female',
+        'Google UK English Male', 
+        'Google US English',
+        'Microsoft Zira',     // Windows natural
+        'Microsoft David',
+        'Rishi',              // Indian English on iOS
+        'Veena',              // Indian English
+        'en-IN',              // Indian English (for better word pronunciation)
+        'en-GB',              // British English
+        'en-US'               // American English
+    ];
+    
+    // Priority order for Hindi voices
+    const hindiPriority = [
+        'Lekha',              // iOS Hindi
+        'Google हिन्दी',
+        'Microsoft Hemant',
+        'Microsoft Kalpana',
+        'hi-IN',
+        'hi'
+    ];
+    
+    // Find best English voice
+    const englishVoices = voices.filter(v => 
+        v.lang.startsWith('en') || 
+        englishPriority.some(p => v.name.includes(p))
+    );
+    
+    for (const priority of englishPriority) {
+        const found = englishVoices.find(v => 
+            v.name.includes(priority) || v.lang.includes(priority)
+        );
+        if (found) {
+            bestEnglishVoice = found;
+            break;
+        }
+    }
+    
+    // Fallback to any English voice, prefer non-local for better quality
+    if (!bestEnglishVoice && englishVoices.length > 0) {
+        // Prefer remote/network voices (usually higher quality)
+        bestEnglishVoice = englishVoices.find(v => !v.localService) || englishVoices[0];
+    }
+    
+    // Find best Hindi voice
+    const hindiVoices = voices.filter(v => 
+        v.lang.startsWith('hi') || 
+        hindiPriority.some(p => v.name.includes(p))
+    );
+    
+    for (const priority of hindiPriority) {
+        const found = hindiVoices.find(v => 
+            v.name.includes(priority) || v.lang.includes(priority)
+        );
+        if (found) {
+            bestHindiVoice = found;
+            break;
+        }
+    }
+    
+    if (!bestHindiVoice && hindiVoices.length > 0) {
+        bestHindiVoice = hindiVoices.find(v => !v.localService) || hindiVoices[0];
+    }
+    
+    voicesLoaded = true;
+    console.log('Selected English voice:', bestEnglishVoice?.name);
+    console.log('Selected Hindi voice:', bestHindiVoice?.name);
+}
+
+function speak(text, lang = 'en-US', voice = null) {
+    if (!('speechSynthesis' in window)) return;
+    
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Set the best voice if available
+    if (voice) {
+        utterance.voice = voice;
+    }
+    
+    utterance.lang = lang;
+    utterance.rate = 0.75;      // Slower for kids to understand clearly
+    utterance.pitch = 1.05;     // Slightly higher, more friendly tone
+    utterance.volume = 1.0;     // Maximum volume
+    
+    // Workaround for Chrome bug where speech cuts off
+    // Break long text into shorter chunks
+    if (text.length > 100) {
+        const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+        sentences.forEach((sentence, index) => {
+            setTimeout(() => {
+                const sentenceUtterance = new SpeechSynthesisUtterance(sentence.trim());
+                if (voice) sentenceUtterance.voice = voice;
+                sentenceUtterance.lang = lang;
+                sentenceUtterance.rate = 0.75;
+                sentenceUtterance.pitch = 1.05;
+                sentenceUtterance.volume = 1.0;
+                window.speechSynthesis.speak(sentenceUtterance);
+            }, index * 100);
+        });
+    } else {
         window.speechSynthesis.speak(utterance);
+    }
+    
+    // Chrome fix: keep speech alive
+    if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
     }
 }
 
 function speakEnglish(text) {
-    speak(text, 'en-US');
+    // Ensure voices are loaded
+    if (!voicesLoaded) {
+        loadVoices().then(() => {
+            speak(text, bestEnglishVoice?.lang || 'en-US', bestEnglishVoice);
+        });
+    } else {
+        speak(text, bestEnglishVoice?.lang || 'en-US', bestEnglishVoice);
+    }
 }
 
 function speakHindi(text) {
-    speak(text, 'hi-IN');
+    // Ensure voices are loaded
+    if (!voicesLoaded) {
+        loadVoices().then(() => {
+            speak(text, bestHindiVoice?.lang || 'hi-IN', bestHindiVoice);
+        });
+    } else {
+        speak(text, bestHindiVoice?.lang || 'hi-IN', bestHindiVoice);
+    }
+}
+
+// Initialize voices when page loads
+if ('speechSynthesis' in window) {
+    loadVoices();
 }
 
 // ==========================================
