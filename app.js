@@ -140,124 +140,142 @@ const englishAnimals = [
 // ==========================================
 const hindiVarnamala = [
     // Vowels (स्वर)
-    { letter: 'अ', word: 'अनार', wordMeaning: 'Pomegranate', emoji: '🍎', type: 'vowel' },
-    { letter: 'आ', word: 'आम', wordMeaning: 'Mango', emoji: '🥭', type: 'vowel' },
-    { letter: 'इ', word: 'इमली', wordMeaning: 'Tamarind', emoji: '🌿', type: 'vowel' },
-    { letter: 'ई', word: 'ईख', wordMeaning: 'Sugarcane', emoji: '🎋', type: 'vowel' },
-    { letter: 'उ', word: 'उल्लू', wordMeaning: 'Owl', emoji: '🦉', type: 'vowel' },
-    { letter: 'ऊ', word: 'ऊन', wordMeaning: 'Wool', emoji: '🧶', type: 'vowel' },
-    { letter: 'ए', word: 'एड़ी', wordMeaning: 'Heel', emoji: '🦶', type: 'vowel' },
-    { letter: 'ऐ', word: 'ऐनक', wordMeaning: 'Glasses', emoji: '👓', type: 'vowel' },
-    { letter: 'ओ', word: 'ओखली', wordMeaning: 'Mortar', emoji: '🥣', type: 'vowel' },
-    { letter: 'औ', word: 'औरत', wordMeaning: 'Woman', emoji: '👩', type: 'vowel' },
-    { letter: 'अं', word: 'अंगूर', wordMeaning: 'Grapes', emoji: '🍇', type: 'vowel' },
+    { letter: 'अ', word: 'अनार', wordMeaning: 'Pomegranate', emoji: '🍎', type: 'vowel', image: 'https://images.unsplash.com/photo-1574709755254-fcd942d09d5a?w=500&h=500&fit=crop' },
+    { letter: 'आ', word: 'आम', wordMeaning: 'Mango', emoji: '🥭', type: 'vowel', image: 'https://images.pexels.com/photos/36579504/pexels-photo-36579504.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'इ', word: 'इमली', wordMeaning: 'Tamarind', emoji: '🌿', type: 'vowel', image: 'https://images.unsplash.com/photo-1765292745873-8cb43eeefa77?w=500&h=500&fit=crop' },
+    { letter: 'ई', word: 'ईख', wordMeaning: 'Sugarcane', emoji: '🎋', type: 'vowel', image: 'https://images.pexels.com/photos/37753396/pexels-photo-37753396.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'उ', word: 'उल्लू', wordMeaning: 'Owl', emoji: '🦉', type: 'vowel', image: 'https://images.unsplash.com/photo-1553264701-d138db4fd5d4?w=500&h=500&fit=crop' },
+    { letter: 'ऊ', word: 'ऊन', wordMeaning: 'Wool', emoji: '🧶', type: 'vowel', image: 'https://images.unsplash.com/photo-1517490970599-197965fbcef4?w=500&h=500&fit=crop' },
+    { letter: 'ए', word: 'एड़ी', wordMeaning: 'Heel', emoji: '🦶', type: 'vowel', image: 'https://images.pexels.com/photos/7886226/pexels-photo-7886226.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ऐ', word: 'ऐनक', wordMeaning: 'Glasses', emoji: '👓', type: 'vowel', image: 'https://images.unsplash.com/photo-1614715838608-dd527c46231d?w=500&h=500&fit=crop' },
+    { letter: 'ओ', word: 'ओखली', wordMeaning: 'Mortar', emoji: '🥣', type: 'vowel', image: 'https://images.unsplash.com/photo-1492552296703-4ec0a2fb3715?w=500&h=500&fit=crop' },
+    { letter: 'औ', word: 'औरत', wordMeaning: 'Woman', emoji: '👩', type: 'vowel', image: 'https://images.unsplash.com/photo-1463335361701-e90f4c5045d0?w=500&h=500&fit=crop' },
+    { letter: 'अं', word: 'अंगूर', wordMeaning: 'Grapes', emoji: '🍇', type: 'vowel', image: 'https://images.unsplash.com/photo-1698703428304-5ea0e245e266?w=500&h=500&fit=crop' },
     { letter: 'अः', word: 'अः', wordMeaning: 'Sound', emoji: '🔊', type: 'vowel' },
     // Consonants (व्यंजन)
-    { letter: 'क', word: 'कमल', wordMeaning: 'Lotus', emoji: '🪷', type: 'consonant' },
-    { letter: 'ख', word: 'खरगोश', wordMeaning: 'Rabbit', emoji: '🐰', type: 'consonant' },
-    { letter: 'ग', word: 'गाय', wordMeaning: 'Cow', emoji: '🐄', type: 'consonant' },
-    { letter: 'घ', word: 'घड़ी', wordMeaning: 'Clock', emoji: '⏰', type: 'consonant' },
-    { letter: 'च', word: 'चम्मच', wordMeaning: 'Spoon', emoji: '🥄', type: 'consonant' },
-    { letter: 'छ', word: 'छाता', wordMeaning: 'Umbrella', emoji: '☂️', type: 'consonant' },
-    { letter: 'ज', word: 'जहाज़', wordMeaning: 'Ship', emoji: '🚢', type: 'consonant' },
-    { letter: 'झ', word: 'झंडा', wordMeaning: 'Flag', emoji: '🚩', type: 'consonant' },
-    { letter: 'ट', word: 'टमाटर', wordMeaning: 'Tomato', emoji: '🍅', type: 'consonant' },
-    { letter: 'ठ', word: 'ठठेरा', wordMeaning: 'Tinsmith', emoji: '🔨', type: 'consonant' },
-    { letter: 'ड', word: 'डमरू', wordMeaning: 'Drum', emoji: '🪘', type: 'consonant' },
-    { letter: 'ढ', word: 'ढोल', wordMeaning: 'Drum', emoji: '🥁', type: 'consonant' },
-    { letter: 'त', word: 'तरबूज़', wordMeaning: 'Watermelon', emoji: '🍉', type: 'consonant' },
-    { letter: 'थ', word: 'थाली', wordMeaning: 'Plate', emoji: '🍽️', type: 'consonant' },
-    { letter: 'द', word: 'दीया', wordMeaning: 'Lamp', emoji: '🪔', type: 'consonant' },
-    { letter: 'ध', word: 'धनुष', wordMeaning: 'Bow', emoji: '🏹', type: 'consonant' },
-    { letter: 'न', word: 'नल', wordMeaning: 'Tap', emoji: '🚰', type: 'consonant' },
-    { letter: 'प', word: 'पतंग', wordMeaning: 'Kite', emoji: '🪁', type: 'consonant' },
-    { letter: 'फ', word: 'फूल', wordMeaning: 'Flower', emoji: '🌸', type: 'consonant' },
-    { letter: 'ब', word: 'बत्तख़', wordMeaning: 'Duck', emoji: '🦆', type: 'consonant' },
-    { letter: 'भ', word: 'भालू', wordMeaning: 'Bear', emoji: '🐻', type: 'consonant' },
-    { letter: 'म', word: 'मछली', wordMeaning: 'Fish', emoji: '🐟', type: 'consonant' },
-    { letter: 'य', word: 'याक', wordMeaning: 'Yak', emoji: '🦬', type: 'consonant' },
-    { letter: 'र', word: 'रथ', wordMeaning: 'Chariot', emoji: '🏎️', type: 'consonant' },
-    { letter: 'ल', word: 'लड्डू', wordMeaning: 'Sweet', emoji: '🍬', type: 'consonant' },
-    { letter: 'व', word: 'वायलिन', wordMeaning: 'Violin', emoji: '🎻', type: 'consonant' },
-    { letter: 'श', word: 'शेर', wordMeaning: 'Lion', emoji: '🦁', type: 'consonant' },
-    { letter: 'ष', word: 'षट्कोण', wordMeaning: 'Hexagon', emoji: '⬡', type: 'consonant' },
-    { letter: 'स', word: 'सेब', wordMeaning: 'Apple', emoji: '🍎', type: 'consonant' },
-    { letter: 'ह', word: 'हाथी', wordMeaning: 'Elephant', emoji: '🐘', type: 'consonant' }
+    { letter: 'क', word: 'कमल', wordMeaning: 'Lotus', emoji: '🪷', type: 'consonant', image: 'https://images.unsplash.com/photo-1538998073820-4dfa76300194?w=500&h=500&fit=crop' },
+    { letter: 'ख', word: 'खरगोश', wordMeaning: 'Rabbit', emoji: '🐰', type: 'consonant', image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=500&h=500&fit=crop' },
+    { letter: 'ग', word: 'गाय', wordMeaning: 'Cow', emoji: '🐄', type: 'consonant', image: 'https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?w=500&h=500&fit=crop' },
+    { letter: 'घ', word: 'घड़ी', wordMeaning: 'Clock', emoji: '⏰', type: 'consonant', image: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=500&h=500&fit=crop' },
+    { letter: 'च', word: 'चम्मच', wordMeaning: 'Spoon', emoji: '🥄', type: 'consonant', image: 'https://images.unsplash.com/photo-1619367300933-376d8c5cd5f9?w=500&h=500&fit=crop' },
+    { letter: 'छ', word: 'छाता', wordMeaning: 'Umbrella', emoji: '☂️', type: 'consonant', image: 'https://images.unsplash.com/photo-1539443303960-a90a4e7ecc97?w=500&h=500&fit=crop' },
+    { letter: 'ज', word: 'जहाज़', wordMeaning: 'Ship', emoji: '🚢', type: 'consonant', image: 'https://images.unsplash.com/photo-1552207802-77bcb0d13122?w=500&h=500&fit=crop' },
+    { letter: 'झ', word: 'झंडा', wordMeaning: 'Flag', emoji: '🚩', type: 'consonant', image: 'https://images.pexels.com/photos/6476047/pexels-photo-6476047.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ट', word: 'टमाटर', wordMeaning: 'Tomato', emoji: '🍅', type: 'consonant', image: 'https://images.pexels.com/photos/33749230/pexels-photo-33749230.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ठ', word: 'ठठेरा', wordMeaning: 'Tinsmith', emoji: '🔨', type: 'consonant', image: 'https://images.pexels.com/photos/11566773/pexels-photo-11566773.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ड', word: 'डमरू', wordMeaning: 'Drum', emoji: '🪘', type: 'consonant', image: 'https://images.pexels.com/photos/35631778/pexels-photo-35631778.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ढ', word: 'ढोल', wordMeaning: 'Drum', emoji: '🥁', type: 'consonant', image: 'https://images.pexels.com/photos/32652559/pexels-photo-32652559.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'त', word: 'तरबूज़', wordMeaning: 'Watermelon', emoji: '🍉', type: 'consonant', image: 'https://images.unsplash.com/photo-1581074817932-af423ba4566e?w=500&h=500&fit=crop' },
+    { letter: 'थ', word: 'थाली', wordMeaning: 'Plate', emoji: '🍽️', type: 'consonant', image: 'https://images.pexels.com/photos/8148149/pexels-photo-8148149.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'द', word: 'दीया', wordMeaning: 'Lamp', emoji: '🪔', type: 'consonant', image: 'https://images.pexels.com/photos/13689170/pexels-photo-13689170.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ध', word: 'धनुष', wordMeaning: 'Bow', emoji: '🏹', type: 'consonant', image: 'https://images.pexels.com/photos/34610755/pexels-photo-34610755.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'न', word: 'नल', wordMeaning: 'Tap', emoji: '🚰', type: 'consonant', image: 'https://images.pexels.com/photos/36215888/pexels-photo-36215888.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'प', word: 'पतंग', wordMeaning: 'Kite', emoji: '🪁', type: 'consonant', image: 'https://images.unsplash.com/photo-1666626238358-24d592bd5e18?w=500&h=500&fit=crop' },
+    { letter: 'फ', word: 'फूल', wordMeaning: 'Flower', emoji: '🌸', type: 'consonant', image: 'https://images.unsplash.com/photo-1592042616246-8d9a8f583e8a?w=500&h=500&fit=crop' },
+    { letter: 'ब', word: 'बत्तख़', wordMeaning: 'Duck', emoji: '🦆', type: 'consonant', image: 'https://images.unsplash.com/photo-1521730365094-d6978fa2ac8d?w=500&h=500&fit=crop' },
+    { letter: 'भ', word: 'भालू', wordMeaning: 'Bear', emoji: '🐻', type: 'consonant', image: 'https://images.unsplash.com/photo-1611504262166-fa362a217f5c?w=500&h=500&fit=crop' },
+    { letter: 'म', word: 'मछली', wordMeaning: 'Fish', emoji: '🐟', type: 'consonant', image: 'https://images.unsplash.com/photo-1712672117537-0ab4f26d1e7c?w=500&h=500&fit=crop' },
+    { letter: 'य', word: 'याक', wordMeaning: 'Yak', emoji: '🦬', type: 'consonant', image: 'https://images.unsplash.com/photo-1741259114170-a8b20c755c58?w=500&h=500&fit=crop' },
+    { letter: 'र', word: 'रथ', wordMeaning: 'Chariot', emoji: '🏎️', type: 'consonant', image: 'https://images.pexels.com/photos/39362306/pexels-photo-39362306.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'ल', word: 'लड्डू', wordMeaning: 'Sweet', emoji: '🍬', type: 'consonant', image: 'https://images.pexels.com/photos/8659010/pexels-photo-8659010.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'व', word: 'वायलिन', wordMeaning: 'Violin', emoji: '🎻', type: 'consonant', image: 'https://images.pexels.com/photos/5855909/pexels-photo-5855909.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'श', word: 'शेर', wordMeaning: 'Lion', emoji: '🦁', type: 'consonant', image: 'https://images.unsplash.com/photo-1618641662184-bafefb91a542?w=500&h=500&fit=crop' },
+    { letter: 'ष', word: 'षट्कोण', wordMeaning: 'Hexagon', emoji: '⬡', type: 'consonant', image: 'https://images.pexels.com/photos/12391587/pexels-photo-12391587.jpeg?w=500&h=500&fit=crop' },
+    { letter: 'स', word: 'सेब', wordMeaning: 'Apple', emoji: '🍎', type: 'consonant', image: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&h=500&fit=crop' },
+    { letter: 'ह', word: 'हाथी', wordMeaning: 'Elephant', emoji: '🐘', type: 'consonant', image: 'https://images.unsplash.com/photo-1581852017103-68ac65514cf7?w=500&h=500&fit=crop' }
 ];
 
 // ==========================================
 // Data: Hindi Words
 // ==========================================
 const hindiWordsData = [
-    { word: 'माँ', meaning: 'Mother', emoji: '👩' },
-    { word: 'पापा', meaning: 'Father', emoji: '👨' },
-    { word: 'दादी', meaning: 'Grandmother', emoji: '👵' },
-    { word: 'दादा', meaning: 'Grandfather', emoji: '👴' },
-    { word: 'पानी', meaning: 'Water', emoji: '💧' },
-    { word: 'दूध', meaning: 'Milk', emoji: '🥛' },
-    { word: 'रोटी', meaning: 'Bread', emoji: '🫓' },
-    { word: 'चावल', meaning: 'Rice', emoji: '🍚' },
-    { word: 'फल', meaning: 'Fruit', emoji: '🍎' },
-    { word: 'सब्ज़ी', meaning: 'Vegetable', emoji: '🥬' },
-    { word: 'घर', meaning: 'Home', emoji: '🏠' },
-    { word: 'स्कूल', meaning: 'School', emoji: '🏫' },
-    { word: 'किताब', meaning: 'Book', emoji: '📚' },
-    { word: 'कलम', meaning: 'Pen', emoji: '🖊️' },
-    { word: 'गेंद', meaning: 'Ball', emoji: '⚽' },
-    { word: 'गुड़िया', meaning: 'Doll', emoji: '🎎' },
-    { word: 'सूरज', meaning: 'Sun', emoji: '☀️' },
-    { word: 'चाँद', meaning: 'Moon', emoji: '🌙' },
-    { word: 'तारे', meaning: 'Stars', emoji: '⭐' },
-    { word: 'बारिश', meaning: 'Rain', emoji: '🌧️' }
+    { word: 'माँ', meaning: 'Mother', emoji: '👩', image: 'https://images.pexels.com/photos/4589461/pexels-photo-4589461.jpeg?w=500&h=500&fit=crop' },
+    { word: 'पापा', meaning: 'Father', emoji: '👨', image: 'https://images.pexels.com/photos/105952/pexels-photo-105952.jpeg?w=500&h=500&fit=crop' },
+    { word: 'दादी', meaning: 'Grandmother', emoji: '👵', image: 'https://images.pexels.com/photos/19527158/pexels-photo-19527158.jpeg?w=500&h=500&fit=crop' },
+    { word: 'दादा', meaning: 'Grandfather', emoji: '👴', image: 'https://images.pexels.com/photos/38544128/pexels-photo-38544128.jpeg?w=500&h=500&fit=crop' },
+    { word: 'पानी', meaning: 'Water', emoji: '💧', image: 'https://images.unsplash.com/photo-1657368567330-662b92e03dcc?w=500&h=500&fit=crop' },
+    { word: 'दूध', meaning: 'Milk', emoji: '🥛', image: 'https://images.unsplash.com/photo-1576186726188-c9d70843790f?w=500&h=500&fit=crop' },
+    { word: 'रोटी', meaning: 'Bread', emoji: '🫓', image: 'https://images.pexels.com/photos/12427834/pexels-photo-12427834.jpeg?w=500&h=500&fit=crop' },
+    { word: 'चावल', meaning: 'Rice', emoji: '🍚', image: 'https://images.pexels.com/photos/8956718/pexels-photo-8956718.jpeg?w=500&h=500&fit=crop' },
+    { word: 'फल', meaning: 'Fruit', emoji: '🍎', image: 'https://images.pexels.com/photos/10821202/pexels-photo-10821202.jpeg?w=500&h=500&fit=crop' },
+    { word: 'सब्ज़ी', meaning: 'Vegetable', emoji: '🥬', image: 'https://images.pexels.com/photos/5033529/pexels-photo-5033529.jpeg?w=500&h=500&fit=crop' },
+    { word: 'घर', meaning: 'Home', emoji: '🏠', image: 'https://images.pexels.com/photos/226407/pexels-photo-226407.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop' },
+    { word: 'स्कूल', meaning: 'School', emoji: '🏫', image: 'https://images.pexels.com/photos/8500630/pexels-photo-8500630.jpeg?w=500&h=500&fit=crop' },
+    { word: 'किताब', meaning: 'Book', emoji: '📚', image: 'https://images.unsplash.com/photo-1660924198796-e14938ba4516?w=500&h=500&fit=crop' },
+    { word: 'कलम', meaning: 'Pen', emoji: '🖊️', image: 'https://images.pexels.com/photos/29091634/pexels-photo-29091634.jpeg?w=500&h=500&fit=crop' },
+    { word: 'गेंद', meaning: 'Ball', emoji: '⚽', image: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop' },
+    { word: 'गुड़िया', meaning: 'Doll', emoji: '🎎', image: 'https://images.pexels.com/photos/38286876/pexels-photo-38286876.jpeg?w=500&h=500&fit=crop' },
+    { word: 'सूरज', meaning: 'Sun', emoji: '☀️', image: 'https://images.unsplash.com/photo-1594315590298-329f49c8dcb9?w=500&h=500&fit=crop' },
+    { word: 'चाँद', meaning: 'Moon', emoji: '🌙', image: 'https://images.unsplash.com/photo-1477005264461-b0e201668d92?w=500&h=500&fit=crop' },
+    { word: 'तारे', meaning: 'Stars', emoji: '⭐', image: 'https://images.unsplash.com/photo-1766995596065-590702fcce47?w=500&h=500&fit=crop' },
+    { word: 'बारिश', meaning: 'Rain', emoji: '🌧️', image: 'https://images.pexels.com/photos/5135437/pexels-photo-5135437.jpeg?w=500&h=500&fit=crop' }
 ];
 
 // ==========================================
 // Data: Hindi Body Parts
 // ==========================================
 const hindiBodyParts = [
-    { name: 'सिर', english: 'Head', emoji: '👤', position: { top: '5%', left: '42%' } },
-    { name: 'बाल', english: 'Hair', emoji: '💇', position: { top: '0%', left: '42%' } },
-    { name: 'आँखें', english: 'Eyes', emoji: '👀', position: { top: '12%', left: '42%' } },
-    { name: 'नाक', english: 'Nose', emoji: '👃', position: { top: '18%', left: '42%' } },
-    { name: 'मुँह', english: 'Mouth', emoji: '👄', position: { top: '24%', left: '42%' } },
-    { name: 'कान', english: 'Ears', emoji: '👂', position: { top: '15%', left: '25%' } },
-    { name: 'गर्दन', english: 'Neck', emoji: '🦒', position: { top: '32%', left: '42%' } },
-    { name: 'कंधे', english: 'Shoulders', emoji: '💪', position: { top: '38%', left: '25%' } },
-    { name: 'बाज़ू', english: 'Arms', emoji: '💪', position: { top: '50%', left: '15%' } },
-    { name: 'हाथ', english: 'Hands', emoji: '🤚', position: { top: '65%', left: '10%' } },
-    { name: 'उँगलियाँ', english: 'Fingers', emoji: '🖐️', position: { top: '68%', left: '5%' } },
-    { name: 'छाती', english: 'Chest', emoji: '👕', position: { top: '45%', left: '42%' } },
-    { name: 'पेट', english: 'Tummy', emoji: '🫃', position: { top: '55%', left: '42%' } },
-    { name: 'टांगें', english: 'Legs', emoji: '🦵', position: { top: '75%', left: '35%' } },
-    { name: 'घुटने', english: 'Knees', emoji: '🦿', position: { top: '78%', left: '42%' } },
-    { name: 'पैर', english: 'Feet', emoji: '🦶', position: { top: '92%', left: '35%' } },
-    { name: 'पैर की उँगलियाँ', english: 'Toes', emoji: '🦶', position: { top: '95%', left: '42%' } }
+    { name: 'सिर', english: 'Head', emoji: '👤', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face' },
+    { name: 'बाल', english: 'Hair', emoji: '💇', image: 'https://images.pexels.com/photos/6923558/pexels-photo-6923558.jpeg?w=400&h=400&fit=crop' },
+    { name: 'आँखें', english: 'Eyes', emoji: '👀', image: 'https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?w=400&h=400&fit=crop' },
+    { name: 'नाक', english: 'Nose', emoji: '👃', image: 'https://images.unsplash.com/photo-1635004468086-a4c2ba6ba428?w=400&h=400&fit=crop' },
+    { name: 'मुँह', english: 'Mouth', emoji: '👄', image: 'https://images.pexels.com/photos/65665/smile-mouth-teeth-laugh-65665.jpeg?w=400&h=400&fit=crop' },
+    { name: 'कान', english: 'Ears', emoji: '👂', image: 'https://images.unsplash.com/photo-1634656883281-3a665dd2bb8a?w=400&h=400&fit=crop' },
+    { name: 'गर्दन', english: 'Neck', emoji: '👤', image: 'https://images.pexels.com/photos/2734173/pexels-photo-2734173.jpeg?w=400&h=400&fit=crop' },
+    { name: 'कंधे', english: 'Shoulders', emoji: '👤', image: 'https://images.pexels.com/photos/8093085/pexels-photo-8093085.jpeg?w=400&h=400&fit=crop' },
+    { name: 'बाज़ू', english: 'Arms', emoji: '💪', image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=400&fit=crop' },
+    { name: 'हाथ', english: 'Hands', emoji: '🤚', image: 'https://images.unsplash.com/photo-1447619297994-b829cc1ab44a?w=400&h=400&fit=crop' },
+    { name: 'उँगलियाँ', english: 'Fingers', emoji: '🖐️', image: 'https://images.pexels.com/photos/9017408/pexels-photo-9017408.jpeg?w=400&h=400&fit=crop' },
+    { name: 'छाती', english: 'Chest', emoji: '👤', image: 'https://images.pexels.com/photos/9558567/pexels-photo-9558567.jpeg?w=400&h=400&fit=crop' },
+    { name: 'पेट', english: 'Tummy', emoji: '👤', image: 'https://images.pexels.com/photos/5846883/pexels-photo-5846883.jpeg?w=400&h=400&fit=crop' },
+    { name: 'टांगें', english: 'Legs', emoji: '🦵', image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=400&h=400&fit=crop' },
+    { name: 'घुटने', english: 'Knees', emoji: '🦵', image: 'https://images.unsplash.com/photo-1626623936480-15fd56a295f8?w=400&h=400&fit=crop' },
+    { name: 'पैर', english: 'Feet', emoji: '🦶', image: 'https://images.unsplash.com/photo-1637662722004-68be528ef359?w=400&h=400&fit=crop' },
+    { name: 'पैर की उँगलियाँ', english: 'Toes', emoji: '🦶', image: 'https://images.unsplash.com/photo-1504751692041-39fb8c56d189?w=400&h=400&fit=crop' }
 ];
+
+// Real full-body photo with tappable Hindi labels — same photo and layout
+// as the English diagram, just relabeled.
+const hindiBodyDiagram = {
+    image: 'https://images.pexels.com/photos/5560007/pexels-photo-5560007.jpeg?w=800&h=1200&fit=crop',
+    labels: [
+        { name: 'बाल', top: 5, left: 50, side: 'left' },
+        { name: 'आँखें', top: 15, left: 44, side: 'left' },
+        { name: 'कान', top: 19, left: 60, side: 'right' },
+        { name: 'मुँह', top: 24, left: 48, side: 'left' },
+        { name: 'कंधे', top: 29, left: 33, side: 'left' },
+        { name: 'पेट', top: 40, left: 50, side: 'right' },
+        { name: 'बाज़ू', top: 45, left: 30, side: 'left' },
+        { name: 'हाथ', top: 50, left: 47, side: 'right' },
+        { name: 'टांगें', top: 70, left: 45, side: 'left' },
+        { name: 'पैर', top: 93, left: 43, side: 'right' }
+    ]
+};
 
 // ==========================================
 // Data: Hindi Animals
 // ==========================================
 const hindiAnimals = [
-    { name: 'शेर', english: 'Lion', emoji: '🦁' },
-    { name: 'बाघ', english: 'Tiger', emoji: '🐯' },
-    { name: 'हाथी', english: 'Elephant', emoji: '🐘' },
-    { name: 'बंदर', english: 'Monkey', emoji: '🐒' },
-    { name: 'कुत्ता', english: 'Dog', emoji: '🐕' },
-    { name: 'बिल्ली', english: 'Cat', emoji: '🐱' },
-    { name: 'गाय', english: 'Cow', emoji: '🐄' },
-    { name: 'घोड़ा', english: 'Horse', emoji: '🐴' },
-    { name: 'भेड़', english: 'Sheep', emoji: '🐑' },
-    { name: 'सूअर', english: 'Pig', emoji: '🐷' },
-    { name: 'बत्तख़', english: 'Duck', emoji: '🦆' },
-    { name: 'मुर्गी', english: 'Chicken', emoji: '🐔' },
-    { name: 'चिड़िया', english: 'Bird', emoji: '🐦' },
-    { name: 'मछली', english: 'Fish', emoji: '🐟' },
-    { name: 'मेंढक', english: 'Frog', emoji: '🐸' },
-    { name: 'भालू', english: 'Bear', emoji: '🐻' },
-    { name: 'खरगोश', english: 'Rabbit', emoji: '🐰' },
-    { name: 'जिराफ़', english: 'Giraffe', emoji: '🦒' },
-    { name: 'ज़ेबरा', english: 'Zebra', emoji: '🦓' },
-    { name: 'मोर', english: 'Peacock', emoji: '🦚' }
+    { name: 'शेर', english: 'Lion', emoji: '🦁', image: 'https://images.unsplash.com/photo-1618641662184-bafefb91a542?w=500&h=500&fit=crop' },
+    { name: 'बाघ', english: 'Tiger', emoji: '🐯', image: 'https://images.unsplash.com/photo-1686648420191-3a4d35073fd6?w=500&h=500&fit=crop' },
+    { name: 'हाथी', english: 'Elephant', emoji: '🐘', image: 'https://images.unsplash.com/photo-1581852017103-68ac65514cf7?w=500&h=500&fit=crop' },
+    { name: 'बंदर', english: 'Monkey', emoji: '🐒', image: 'https://images.unsplash.com/photo-1554457945-ba5df6648602?w=500&h=500&fit=crop' },
+    { name: 'कुत्ता', english: 'Dog', emoji: '🐕', image: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=500&h=500&fit=crop' },
+    { name: 'बिल्ली', english: 'Cat', emoji: '🐱', image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&h=500&fit=crop' },
+    { name: 'गाय', english: 'Cow', emoji: '🐄', image: 'https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?w=500&h=500&fit=crop' },
+    { name: 'घोड़ा', english: 'Horse', emoji: '🐴', image: 'https://images.unsplash.com/photo-1562163170-4a023d7c99e7?w=500&h=500&fit=crop' },
+    { name: 'भेड़', english: 'Sheep', emoji: '🐑', image: 'https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=500&h=500&fit=crop' },
+    { name: 'सूअर', english: 'Pig', emoji: '🐷', image: 'https://images.unsplash.com/photo-1587213128862-80345e23a71a?w=500&h=500&fit=crop' },
+    { name: 'बत्तख़', english: 'Duck', emoji: '🦆', image: 'https://images.unsplash.com/photo-1521730365094-d6978fa2ac8d?w=500&h=500&fit=crop' },
+    { name: 'मुर्गी', english: 'Chicken', emoji: '🐔', image: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500&h=500&fit=crop' },
+    { name: 'चिड़िया', english: 'Bird', emoji: '🐦', image: 'https://images.unsplash.com/photo-1574068468026-2d19b85e69bf?w=500&h=500&fit=crop' },
+    { name: 'मछली', english: 'Fish', emoji: '🐟', image: 'https://images.unsplash.com/photo-1625369708811-65ebfc5ca632?w=500&h=500&fit=crop' },
+    { name: 'मेंढक', english: 'Frog', emoji: '🐸', image: 'https://images.unsplash.com/photo-1545006398-2cf47cd87b90?w=500&h=500&fit=crop' },
+    { name: 'भालू', english: 'Bear', emoji: '🐻', image: 'https://images.unsplash.com/photo-1611504262166-fa362a217f5c?w=500&h=500&fit=crop' },
+    { name: 'खरगोश', english: 'Rabbit', emoji: '🐰', image: 'https://images.unsplash.com/photo-1452857297128-d9c29adba80b?w=500&h=500&fit=crop' },
+    { name: 'जिराफ़', english: 'Giraffe', emoji: '🦒', image: 'https://images.unsplash.com/photo-1554490828-442467b562dd?w=500&h=500&fit=crop' },
+    { name: 'ज़ेबरा', english: 'Zebra', emoji: '🦓', image: 'https://images.unsplash.com/photo-1526319238109-524eecb9b913?w=500&h=500&fit=crop' },
+    { name: 'मोर', english: 'Peacock', emoji: '🦚', image: 'https://images.unsplash.com/photo-1554658506-487b008909d1?w=500&h=500&fit=crop' }
 ];
 
 // ==========================================
@@ -741,14 +759,14 @@ function handleEnglishWordTap(index) {
 
 // Renders the leader-line + label pill pointing from a diagram dot to
 // the margin, using only percentage coordinates so it scales with the image.
-function renderBodyDiagramLabel(label) {
+function renderBodyDiagramLabel(label, speakFn = 'speakBodyPart') {
     const lineLeft = label.side === 'left' ? 12 : label.left;
     const lineWidth = label.side === 'left' ? (label.left - 12) : (88 - label.left);
     const pillTop = `top: ${label.top}%;`;
     return `
         <div class="body-label-line" style="${pillTop} left: ${lineLeft}%; width: ${lineWidth}%;"></div>
-        <div class="body-label-dot" style="${pillTop} left: ${label.left}%;" onclick="speakBodyPart('${label.name}')"></div>
-        <div class="body-label-pill side-${label.side}" style="${pillTop}" onclick="speakBodyPart('${label.name}')">${label.name}</div>
+        <div class="body-label-dot" style="${pillTop} left: ${label.left}%;" onclick="${speakFn}('${label.name}')"></div>
+        <div class="body-label-pill side-${label.side}" style="${pillTop}" onclick="${speakFn}('${label.name}')">${label.name}</div>
     `;
 }
 
@@ -827,7 +845,7 @@ function renderVarnamala() {
             <div class="flashcard-letter" style="font-size: 7rem; background: linear-gradient(135deg, hsl(${index * 8}, 70%, 50%), hsl(${index * 8 + 30}, 70%, 60%)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                 ${item.letter}
             </div>
-            <div class="flashcard-image">${item.emoji}</div>
+            ${renderFlashcardVisual(item.image, item.emoji, item.word)}
             <div class="flashcard-word">${item.letter} से ${item.word}</div>
             <div class="flashcard-phonetic" style="font-size: 0.9rem; color: #888;">(${item.wordMeaning})</div>
             <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>
@@ -858,7 +876,7 @@ function renderHindiWords() {
     
     container.innerHTML = hindiWordsData.map((item, index) => `
         <div class="flashcard" data-index="${index}" onclick="handleHindiWordTap(${index})">
-            <div class="flashcard-image" style="font-size: 6rem;">${item.emoji}</div>
+            ${renderFlashcardVisual(item.image, item.emoji, item.word, 'font-size: 6rem;')}
             <div class="flashcard-word" style="font-size: 2.5rem;">${item.word}</div>
             <div class="flashcard-phonetic">(${item.meaning})</div>
             <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>
@@ -881,36 +899,39 @@ function handleHindiWordTap(index) {
 function renderHindiBodyParts() {
     const figureContainer = document.getElementById('hindi-body-figure');
     const cardsContainer = document.getElementById('hindi-body-cards');
-    
+
+    // Real full-body photo with tappable Hindi labels pointing to each part
     figureContainer.innerHTML = `
-        <h3 style="margin-bottom: 15px; color: #666;">👆 शरीर के अंग छुएँ!</h3>
-        <div class="body-figure">
-            <svg viewBox="0 0 100 160" style="width: 150px; height: 240px;">
-                <circle cx="50" cy="20" r="15" fill="#FFD93D" stroke="#333" stroke-width="2"/>
-                <line x1="50" y1="35" x2="50" y2="90" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="50" x2="25" y2="75" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="50" x2="75" y2="75" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="90" x2="30" y2="140" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <line x1="50" y1="90" x2="70" y2="140" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="43" cy="17" r="3" fill="#333"/>
-                <circle cx="57" cy="17" r="3" fill="#333"/>
-                <path d="M 43 27 Q 50 32 57 27" stroke="#333" stroke-width="2" fill="none"/>
-            </svg>
+        <h3 style="margin-bottom: 15px; color: #666;">👆 शरीर के अंग सुनने के लिए छुएँ!</h3>
+        <div class="body-diagram">
+            <img src="${hindiBodyDiagram.image}" alt="Full body">
+            ${hindiBodyDiagram.labels.map(label => renderBodyDiagramLabel(label, 'speakHindiBodyPart')).join('')}
         </div>
     `;
-    
+
+    // Real close-up photo for each individual body part (falls back to the
+    // emoji if a part has no photo yet, or if the photo fails to load)
     cardsContainer.innerHTML = hindiBodyParts.map((part, index) => `
         <div class="body-card" onclick="handleHindiBodyPartTap(${index})">
-            <div class="body-card-icon">${part.emoji}</div>
+            ${part.image
+                ? `<img src="${part.image}" alt="${part.name}" class="body-card-image" onerror="this.outerHTML='<div class=\\'body-card-icon\\'>${part.emoji}</div>'">`
+                : `<div class="body-card-icon">${part.emoji}</div>`}
             <div class="body-card-name">${part.name}</div>
         </div>
     `).join('');
 }
 
+function speakHindiBodyPart(name) {
+    speakHindi(name);
+    if (Math.random() < 0.3) {
+        setTimeout(showReward, 800);
+    }
+}
+
 function handleHindiBodyPartTap(index) {
     const part = hindiBodyParts[index];
     speakHindi(part.name);
-    
+
     if (Math.random() < 0.25) {
         setTimeout(showReward, 1000);
     }
@@ -922,13 +943,13 @@ function renderHindiAnimals() {
     
     container.innerHTML = hindiAnimals.map((item, index) => `
         <div class="flashcard" data-index="${index}" onclick="handleHindiAnimalTap(${index})">
-            <div class="flashcard-image" style="font-size: 7rem;">${item.emoji}</div>
+            ${renderFlashcardVisual(item.image, item.emoji, item.name, 'font-size: 7rem;')}
             <div class="flashcard-word" style="font-size: 2.5rem;">${item.name}</div>
             <div class="flashcard-phonetic">(${item.english})</div>
             <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>
         </div>
     `).join('');
-    
+
     renderDots(dotsContainer, hindiAnimals.length, 'hindi-animals');
     setupSwipeNavigation(container, 'hindi-animals');
 }
