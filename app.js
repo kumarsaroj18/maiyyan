@@ -992,7 +992,7 @@ function renderNumbers() {
             <div class="flashcard-word">${item.word}</div>
             <div class="flashcard-phonetic">${item.hindi}</div>
             <div style="font-size: 2rem; letter-spacing: 5px; margin-top: 15px;">${item.objects}</div>
-            <div class="tap-hint"><span class="tap-icon">👆</span> Tap to count</div>
+            <div class="tap-hint"><span class="tap-icon">👆</span> Tap to hear</div>
         </div>
     `).join('');
     
@@ -1002,14 +1002,9 @@ function renderNumbers() {
 
 function handleNumberTap(index) {
     const item = numbersData[index];
-    
-    // Count out loud
-    let countText = '';
-    for (let i = 1; i <= item.number; i++) {
-        countText += i + '. ';
-    }
-    speakEnglish(`${item.number}. ${item.word}. Let's count! ${countText}`);
-    
+
+    speakEnglish(item.word);
+
     if (Math.random() < 0.3) {
         setTimeout(showReward, 2000);
     }
