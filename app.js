@@ -597,11 +597,7 @@ function showReward() {
     
     // Create confetti
     createConfetti();
-    
-    // Speak encouragement
-    const encouragements = ['Great job!', 'Wonderful!', 'Amazing!', 'Well done!', 'Super!'];
-    speakEnglish(encouragements[Math.floor(Math.random() * encouragements.length)]);
-    
+
     // Add star
     addStar();
     
@@ -1051,7 +1047,7 @@ function renderColors() {
 
 function handleColorTap(index) {
     const color = colorsData[index];
-    speakEnglish(`${color.name}. This is the color ${color.name}`);
+    speakEnglish(color.name);
     
     if (Math.random() < 0.25) {
         setTimeout(showReward, 1000);
