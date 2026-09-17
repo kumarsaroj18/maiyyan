@@ -417,14 +417,6 @@ function selectBestVoices(voices) {
         'en-GB'
     ];
     
-    // Priority order for Hindi voices
-    const hindiPriority = [
-        'Lekha',              // macOS Hindi voice
-        'Google हिन्दी',
-        'hi-IN',
-        'hi'
-    ];
-    
     // Find best English voice
     const englishVoices = voices.filter(v => v.lang.startsWith('en'));
     
@@ -445,25 +437,18 @@ function selectBestVoices(voices) {
         bestEnglishVoice = englishVoices.find(v => !v.localService) || englishVoices[0];
     }
     
-    // Find best Hindi voice
-    const hindiVoices = voices.filter(v => 
-        v.lang.startsWith('hi') || 
-        hindiPriority.some(p => v.name.includes(p))
-    );
-    
-    for (const priority of hindiPriority) {
-        const found = hindiVoices.find(v => 
-            v.name.includes(priority) || v.lang.includes(priority)
-        );
-        if (found) {
-            bestHindiVoice = found;
-            break;
-        }
-    }
-    
-    if (!bestHindiVoice && hindiVoices.length > 0) {
-        bestHindiVoice = hindiVoices.find(v => !v.localService) || hindiVoices[0];
-    }
+    // Find best Hindi voice. Prefer Google's network voice by name, then any
+    // other network voice (usually higher-quality neural synthesis with more
+    // accurate schwa handling), then fall back to a local voice — putting
+    // "Lekha" (macOS's built-in Hindi voice) last since it's known to
+    // mispronounce word-final vowels (e.g. "आम" -> "aama" instead of "aam").
+    const hindiVoices = voices.filter(v => v.lang.startsWith('hi'));
+
+    bestHindiVoice =
+        hindiVoices.find(v => v.name.includes('Google हिन्दी')) ||
+        hindiVoices.find(v => !v.localService) ||
+        hindiVoices.find(v => v.name.includes('Lekha')) ||
+        hindiVoices[0];
     
     voicesLoaded = true;
     console.log('Selected English voice:', bestEnglishVoice?.name);
@@ -528,14 +513,46 @@ function speakEnglish(text) {
     }
 }
 
+// Speech-only pronunciation fixes (never shown on screen — only fed to the
+// speech engine). Devanagari consonants carry an implicit "a" sound, and
+// spoken Hindi normally drops that final vowel at the end of a word (e.g.
+// "आम" is said "aam", not "aam-a"), but many TTS voices don't apply that
+// rule and read the word letter-by-literal-letter. Appending a halant (्)
+// to the last consonant tells the speech engine to drop it. This is NOT a
+// blanket rule — plenty of common words genuinely keep the final vowel
+// (कमल is "kamal", नल is "nal", मेंढक is "mendhak") — so only words verified
+// to actually drop it are listed here.
+const hindiSpeechOverrides = {
+    'अंगूर': 'अंगूर्', 'अनार': 'अनार्', 'आम': 'आम्', 'ईख': 'ईख्', 'ऊन': 'ऊन्',
+    'किताब': 'किताब्', 'खरगोश': 'खरगोश्', 'गाय': 'गाय्', 'गेंद': 'गेंद्',
+    'घर': 'घर्', 'चम्मच': 'चम्मच्', 'चाँद': 'चाँद्', 'जहाज़': 'जहाज़्',
+    'टमाटर': 'टमाटर्', 'ढोल': 'ढोल्', 'तरबूज़': 'तरबूज़्', 'दूध': 'दूध्',
+    'धनुष': 'धनुष्', 'पतंग': 'पतंग्', 'फूल': 'फूल्', 'बत्तख़': 'बत्तख़्',
+    'बारिश': 'बारिश्', 'याक': 'याक्', 'रथ': 'रथ्', 'वायलिन': 'वायलिन्',
+    'शेर': 'शेर्', 'सूरज': 'सूरज्', 'सेब': 'सेब्', 'स्कूल': 'स्कूल्',
+    'षट्कोण': 'षट्कोण्',
+    'कान': 'कान्', 'जिराफ़': 'जिराफ़्', 'नाक': 'नाक्', 'पेट': 'पेट्',
+    'पैर': 'पैर्', 'बाघ': 'बाघ्', 'बाल': 'बाल्', 'भेड़': 'भेड़्',
+    'मुँह': 'मुँह्', 'मोर': 'मोर्', 'सिर': 'सिर्', 'सूअर': 'सूअर्', 'हाथ': 'हाथ्'
+};
+
+function hindiSpeechText(text) {
+    let corrected = text;
+    for (const word in hindiSpeechOverrides) {
+        corrected = corrected.split(word).join(hindiSpeechOverrides[word]);
+    }
+    return corrected;
+}
+
 function speakHindi(text) {
+    const speechText = hindiSpeechText(text);
     // Ensure voices are loaded
     if (!voicesLoaded) {
         loadVoices().then(() => {
-            speak(text, bestHindiVoice?.lang || 'hi-IN', bestHindiVoice);
+            speak(speechText, bestHindiVoice?.lang || 'hi-IN', bestHindiVoice);
         });
     } else {
-        speak(text, bestHindiVoice?.lang || 'hi-IN', bestHindiVoice);
+        speak(speechText, bestHindiVoice?.lang || 'hi-IN', bestHindiVoice);
     }
 }
 

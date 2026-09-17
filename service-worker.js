@@ -3,7 +3,7 @@
  * Enables offline functionality
  */
 
-const CACHE_NAME = 'learn-play-v1';
+const CACHE_NAME = 'learn-play-v2';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -45,7 +45,13 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - network-first, falling back to cache when offline.
+// This app is under active development, so the app shell (HTML/JS/CSS)
+// must always prefer the latest deployed version when online — a
+// cache-first strategy here would silently keep serving an old app.js
+// forever to anyone who already has this service worker installed,
+// since the browser only re-checks this script itself for updates, not
+// the assets it caches.
 self.addEventListener('fetch', (event) => {
     // Let the browser handle cross-origin requests (e.g. flashcard photos
     // from Unsplash/Pexels) directly. Routing them through the service
@@ -55,38 +61,42 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // For navigations and same-origin app-shell files, bypass the browser's
+    // own HTTP cache too (not just the Cache Storage API above) — otherwise
+    // a Last-Modified-based heuristic cache hit can still serve a stale
+    // app.js even though this handler asks the network first.
+    const networkRequest = event.request.mode === 'navigate'
+        ? new Request(event.request.url, { cache: 'no-store' })
+        : new Request(event.request, { cache: 'no-store' });
+
     event.respondWith(
-        caches.match(event.request)
-            .then((cachedResponse) => {
-                // Return cached response if found
-                if (cachedResponse) {
-                    return cachedResponse;
+        fetch(networkRequest)
+            .then((networkResponse) => {
+                // Don't cache non-GET requests
+                if (event.request.method !== 'GET') {
+                    return networkResponse;
                 }
 
-                // Otherwise fetch from network
-                return fetch(event.request)
-                    .then((networkResponse) => {
-                        // Don't cache non-GET requests
-                        if (event.request.method !== 'GET') {
-                            return networkResponse;
-                        }
-
-                        // Clone and cache the response
-                        const responseToCache = networkResponse.clone();
-                        caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                cache.put(event.request, responseToCache);
-                            });
-
-                        return networkResponse;
-                    })
-                    .catch(() => {
-                        // If both cache and network fail, return a fallback
-                        if (event.request.destination === 'document') {
-                            return caches.match('/index.html');
-                        }
-                        return new Response('Offline', { status: 503 });
+                // Clone and cache the fresh response for offline use
+                const responseToCache = networkResponse.clone();
+                caches.open(CACHE_NAME)
+                    .then((cache) => {
+                        cache.put(event.request, responseToCache);
                     });
+
+                return networkResponse;
+            })
+            .catch(() => {
+                // Offline (or request failed) - fall back to cache
+                return caches.match(event.request).then((cachedResponse) => {
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    }
+                    if (event.request.destination === 'document') {
+                        return caches.match('/index.html');
+                    }
+                    return new Response('Offline', { status: 503 });
+                });
             })
     );
 });
