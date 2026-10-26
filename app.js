@@ -39,20 +39,20 @@ const alphabetsData = [
 // Data: English Words (Common Objects)
 // ==========================================
 const englishWordsData = [
-    { word: 'Book', emoji: '📚', category: 'objects', image: 'https://images.unsplash.com/photo-1660924198796-e14938ba4516?w=500&h=500&fit=crop' },
-    { word: 'Chair', emoji: '🪑', category: 'furniture', image: 'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?w=500&h=500&fit=crop' },
-    { word: 'Sofa', emoji: '🛋️', category: 'furniture', image: 'https://images.pexels.com/photos/5998023/pexels-photo-5998023.jpeg?w=500&h=500&fit=crop' },
+    { word: 'Book', emoji: '📚', category: 'objects', image: 'images/book.jpg' },
+    { word: 'Chair', emoji: '🪑', category: 'furniture', image: 'images/chair.jpg' },
+    { word: 'Sofa', emoji: '🛋️', category: 'furniture', image: 'images/sofa.jpg' },
     { word: 'Bed', emoji: '🛏️', category: 'furniture', image: 'https://images.unsplash.com/photo-1774427697365-f3f50b6d5eca?w=500&h=500&fit=crop' },
-    { word: 'Car', emoji: '🚗', category: 'vehicles', image: 'https://images.pexels.com/photos/7925480/pexels-photo-7925480.jpeg?w=500&h=500&fit=crop' },
-    { word: 'Bus', emoji: '🚌', category: 'vehicles', image: 'https://images.unsplash.com/photo-1587232439648-04e7feaf1777?w=500&h=500&fit=crop' },
-    { word: 'Train', emoji: '🚂', category: 'vehicles', image: 'https://images.unsplash.com/photo-1662555327334-6d52c4f8a702?w=500&h=500&fit=crop' },
+    { word: 'Car', emoji: '🚗', category: 'vehicles', image: 'images/car.jpg' },
+    { word: 'Bus', emoji: '🚌', category: 'vehicles', image: 'images/bus.jpg' },
+    { word: 'Train', emoji: '🚂', category: 'vehicles', image: 'images/train.jpg' },
     { word: 'Plane', emoji: '✈️', category: 'vehicles', image: 'https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=500&h=500&fit=crop' },
     { word: 'Flower', emoji: '🌸', category: 'nature', image: 'https://images.unsplash.com/photo-1592042616246-8d9a8f583e8a?w=500&h=500&fit=crop' },
     { word: 'Tree', emoji: '🌳', category: 'nature', image: 'https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?w=500&h=500&fit=crop' },
     { word: 'Star', emoji: '⭐', category: 'nature', image: 'https://images.unsplash.com/photo-1766995596065-590702fcce47?w=500&h=500&fit=crop' },
     { word: 'Moon', emoji: '🌙', category: 'nature', image: 'https://images.unsplash.com/photo-1477005264461-b0e201668d92?w=500&h=500&fit=crop' },
-    { word: 'Water', emoji: '💧', category: 'nature', image: 'https://images.unsplash.com/photo-1657368567330-662b92e03dcc?w=500&h=500&fit=crop' },
-    { word: 'Milk', emoji: '🥛', category: 'food', image: 'https://images.unsplash.com/photo-1576186726188-c9d70843790f?w=500&h=500&fit=crop' },
+    { word: 'Water', emoji: '💧', category: 'nature', image: 'images/water.png' },
+    { word: 'Milk', emoji: '🥛', category: 'food', image: 'images/milk.png' },
     { word: 'Bread', emoji: '🍞', category: 'food', image: 'https://images.unsplash.com/photo-1552056413-b8b5eed0170b?w=500&h=500&fit=crop' },
     { word: 'Rice', emoji: '🍚', category: 'food', image: 'https://images.pexels.com/photos/8956718/pexels-photo-8956718.jpeg?w=500&h=500&fit=crop' },
     { word: 'Banana', emoji: '🍌', category: 'food', image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&h=500&fit=crop' },
@@ -329,6 +329,33 @@ const colorsData = [
 // ==========================================
 let totalStars = parseInt(localStorage.getItem('totalStars') || '0');
 let currentCardIndex = 0;
+let voiceoverEnabled = localStorage.getItem('voiceoverEnabled') !== 'false'; // Default: enabled
+
+// ==========================================
+// Voiceover Toggle
+// ==========================================
+function toggleVoiceover() {
+    voiceoverEnabled = !voiceoverEnabled;
+    localStorage.setItem('voiceoverEnabled', voiceoverEnabled);
+    updateVoiceoverIcon();
+    
+    // Cancel any ongoing speech when turning off
+    if (!voiceoverEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+    }
+}
+
+function updateVoiceoverIcon() {
+    const icon = document.getElementById('voiceover-icon');
+    if (icon) {
+        icon.textContent = voiceoverEnabled ? '🔊' : '🔇';
+    }
+    
+    const toggle = document.getElementById('voiceover-toggle');
+    if (toggle) {
+        toggle.classList.toggle('voiceover-off', !voiceoverEnabled);
+    }
+}
 
 // ==========================================
 // Text-to-Speech with Enhanced Voice Selection
@@ -457,6 +484,7 @@ function selectBestVoices(voices) {
 
 function speak(text, lang = 'en-US', voice = null) {
     if (!('speechSynthesis' in window)) return;
+    if (!voiceoverEnabled) return; // Check if voiceover is enabled
     
     // Resume audio context on user interaction (needed for Chrome)
     if (audioContext && audioContext.state === 'suspended') {
@@ -586,49 +614,6 @@ function updateStarsDisplay() {
     }
 }
 
-function showReward() {
-    const modal = document.getElementById('reward-modal');
-    modal.classList.remove('hidden');
-    
-    // Play celebration
-    const celebrations = ['🎉', '🌟', '🎊', '👏', '🥳'];
-    const rewardEmoji = modal.querySelector('.reward-emoji');
-    rewardEmoji.textContent = celebrations[Math.floor(Math.random() * celebrations.length)];
-    
-    // Create confetti
-    createConfetti();
-
-    // Add star
-    addStar();
-    
-    // Hide after 2 seconds
-    setTimeout(() => {
-        modal.classList.add('hidden');
-    }, 2000);
-}
-
-function createConfetti() {
-    const container = document.getElementById('confetti-container');
-    container.innerHTML = '';
-    
-    const colors = ['#FF6B9D', '#9B59B6', '#3498DB', '#2ECC71', '#F1C40F', '#E67E22'];
-    
-    for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animationDelay = Math.random() * 0.5 + 's';
-        confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
-        container.appendChild(confetti);
-    }
-    
-    // Clean up after animation
-    setTimeout(() => {
-        container.innerHTML = '';
-    }, 4000);
-}
-
 // ==========================================
 // Navigation
 // ==========================================
@@ -645,7 +630,12 @@ function showScreen(screenId) {
 }
 
 function navigateToSection(section) {
-    showScreen(section + '-menu');
+    if (section === 'colors-fullscreen') {
+        showScreen('colors-fullscreen-page');
+        renderColorsFullscreen();
+    } else {
+        showScreen(section + '-menu');
+    }
 }
 
 function navigateToPage(page) {
@@ -706,6 +696,7 @@ function renderFlashcardVisual(image, emoji, altText, emojiStyle) {
 }
 
 function renderAlphabets() {
+    // Render Mobile/Tablet view (swipeable flashcards)
     const container = document.getElementById('alphabets-container');
     const dotsContainer = document.getElementById('alphabets-dots');
     
@@ -722,6 +713,83 @@ function renderAlphabets() {
 
     renderDots(dotsContainer, alphabetsData.length, 'alphabets');
     setupSwipeNavigation(container, 'alphabets');
+    
+    // Render Laptop/Desktop view (fullscreen with ribbon)
+    renderAlphabetsLaptopView();
+}
+
+let currentAlphabetIndex = 0;
+
+function renderAlphabetsLaptopView() {
+    const ribbon = document.getElementById('alphabets-ribbon');
+    if (!ribbon) return;
+    
+    // Render small letter selector ribbon at bottom
+    ribbon.innerHTML = alphabetsData.map((item, index) => `
+        <div class="alphabet-ribbon-item ${index === 0 ? 'active' : ''}" 
+             data-index="${index}"
+             style="background: linear-gradient(135deg, hsl(${index * 14}, 70%, 50%), hsl(${index * 14 + 30}, 70%, 60%));"
+             onclick="selectAlphabetFullscreen(${index})">
+            ${item.letter}
+        </div>
+    `).join('');
+    
+    // Show the first letter by default
+    selectAlphabetFullscreen(0);
+}
+
+function selectAlphabetFullscreen(index) {
+    currentAlphabetIndex = index;
+    const item = alphabetsData[index];
+    
+    // Update the sections
+    const letterSection = document.getElementById('alphabet-letter-section');
+    const imageSection = document.getElementById('alphabet-image-section');
+    const letterEl = document.getElementById('alphabet-display-letter');
+    const imageEl = document.getElementById('alphabet-display-image');
+    
+    // Set background gradient for letter section based on letter
+    letterSection.style.background = `linear-gradient(135deg, hsl(${index * 14}, 70%, 92%) 0%, hsl(${index * 14 + 30}, 70%, 88%) 100%)`;
+    
+    // Set lighter background for image section
+    imageSection.style.background = `linear-gradient(135deg, hsl(${index * 14}, 30%, 98%) 0%, hsl(${index * 14 + 30}, 30%, 96%) 100%)`;
+    
+    // Update letter with gradient color
+    letterEl.textContent = item.letter;
+    letterEl.style.background = `linear-gradient(135deg, hsl(${index * 14}, 70%, 45%), hsl(${index * 14 + 30}, 70%, 55%))`;
+    letterEl.style.webkitBackgroundClip = 'text';
+    letterEl.style.webkitTextFillColor = 'transparent';
+    letterEl.style.backgroundClip = 'text';
+    
+    // Update image - use photo if available, otherwise emoji (make it fill the section)
+    if (item.image) {
+        imageEl.innerHTML = `<img src="${item.image}" alt="${item.word}" class="alphabet-display-photo" onerror="this.outerHTML='<span class=\\'alphabet-emoji-fallback\\'>${item.emoji}</span>'">`;
+    } else {
+        imageEl.innerHTML = `<span class="alphabet-emoji-fallback">${item.emoji}</span>`;
+    }
+    
+    // Update active state on ribbon
+    document.querySelectorAll('.alphabet-ribbon-item').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+    
+    // Speak the letter and word
+    const letterForSpeech = item.letter.toLowerCase();
+    speakEnglish(letterForSpeech);
+    setTimeout(() => {
+        speakEnglish(`${letterForSpeech} for ${item.word}`);
+    }, 800);
+    
+    // Random chance to show reward
+}
+
+function speakCurrentAlphabet() {
+    const item = alphabetsData[currentAlphabetIndex];
+    const letterForSpeech = item.letter.toLowerCase();
+    speakEnglish(letterForSpeech);
+    setTimeout(() => {
+        speakEnglish(`${letterForSpeech} for ${item.word}`);
+    }, 800);
 }
 
 function handleAlphabetTap(index) {
@@ -740,12 +808,10 @@ function handleAlphabetTap(index) {
     }, 800);
     
     // Random chance to show reward
-    if (Math.random() < 0.3) {
-        setTimeout(showReward, 2000);
-    }
 }
 
 function renderEnglishWords() {
+    // Render Mobile/Tablet view (swipeable flashcards)
     const container = document.getElementById('english-words-container');
     const dotsContainer = document.getElementById('english-words-dots');
     
@@ -759,15 +825,76 @@ function renderEnglishWords() {
 
     renderDots(dotsContainer, englishWordsData.length, 'english-words');
     setupSwipeNavigation(container, 'english-words');
+    
+    // Render Laptop/Desktop view (fullscreen with ribbon)
+    renderWordsLaptopView();
+}
+
+let currentWordIndex = 0;
+
+function renderWordsLaptopView() {
+    const ribbon = document.getElementById('words-ribbon');
+    if (!ribbon) return;
+    
+    // Render small word selector ribbon at bottom
+    ribbon.innerHTML = englishWordsData.map((item, index) => `
+        <div class="word-ribbon-item ${index === 0 ? 'active' : ''}" 
+             data-index="${index}"
+             onclick="selectWordFullscreen(${index})">
+            ${item.emoji}
+        </div>
+    `).join('');
+    
+    // Show the first word by default
+    selectWordFullscreen(0);
+}
+
+function selectWordFullscreen(index) {
+    currentWordIndex = index;
+    const item = englishWordsData[index];
+    
+    // Update the sections
+    const textSection = document.getElementById('word-text-section');
+    const imageSection = document.getElementById('word-image-section');
+    const textEl = document.getElementById('word-display-text');
+    const imageEl = document.getElementById('word-display-image');
+    
+    // Set background colors
+    const hue = (index * 18) % 360;
+    textSection.style.background = `linear-gradient(135deg, hsl(${hue}, 60%, 92%) 0%, hsl(${hue + 30}, 60%, 88%) 100%)`;
+    imageSection.style.background = `linear-gradient(135deg, hsl(${hue}, 25%, 98%) 0%, hsl(${hue + 30}, 25%, 96%) 100%)`;
+    
+    // Update word text
+    textEl.textContent = item.word;
+    textEl.style.color = `hsl(${hue}, 60%, 40%)`;
+    
+    // Update image
+    if (item.image) {
+        imageEl.innerHTML = `<img src="${item.image}" alt="${item.word}" class="word-display-photo" onerror="this.outerHTML='<span class=\\'word-emoji-fallback\\'>${item.emoji}</span>'">`;
+    } else {
+        imageEl.innerHTML = `<span class="word-emoji-fallback">${item.emoji}</span>`;
+    }
+    
+    // Update active state on ribbon
+    document.querySelectorAll('.word-ribbon-item').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+    
+    // Speak the word
+    speakEnglish(item.word);
+    
+    // Random chance to show reward
+}
+
+function speakCurrentWord() {
+    const item = englishWordsData[currentWordIndex];
+    speakEnglish(item.word);
 }
 
 function handleEnglishWordTap(index) {
     const item = englishWordsData[index];
     speakEnglish(item.word);
     
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
 }
 
 // Renders the leader-line + label pill pointing from a diagram dot to
@@ -809,21 +936,16 @@ function renderEnglishBodyParts() {
 function speakBodyPart(name) {
     speakEnglish(name);
     // Visual feedback
-    if (Math.random() < 0.3) {
-        setTimeout(showReward, 800);
-    }
 }
 
 function handleEnglishBodyPartTap(index) {
     const part = englishBodyParts[index];
     speakEnglish(part.name);
     
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
 }
 
 function renderEnglishAnimals() {
+    // Render Mobile/Tablet view (swipeable flashcards)
     const container = document.getElementById('english-animals-container');
     const dotsContainer = document.getElementById('english-animals-dots');
     
@@ -838,15 +960,76 @@ function renderEnglishAnimals() {
     
     renderDots(dotsContainer, englishAnimals.length, 'english-animals');
     setupSwipeNavigation(container, 'english-animals');
+    
+    // Render Laptop/Desktop view (fullscreen with ribbon)
+    renderAnimalsLaptopView();
+}
+
+let currentAnimalIndex = 0;
+
+function renderAnimalsLaptopView() {
+    const ribbon = document.getElementById('animals-ribbon');
+    if (!ribbon) return;
+    
+    // Render small animal selector ribbon at bottom
+    ribbon.innerHTML = englishAnimals.map((item, index) => `
+        <div class="animal-ribbon-item ${index === 0 ? 'active' : ''}" 
+             data-index="${index}"
+             onclick="selectAnimalFullscreen(${index})">
+            ${item.emoji}
+        </div>
+    `).join('');
+    
+    // Show the first animal by default
+    selectAnimalFullscreen(0);
+}
+
+function selectAnimalFullscreen(index) {
+    currentAnimalIndex = index;
+    const item = englishAnimals[index];
+    
+    // Update the sections
+    const nameSection = document.getElementById('animal-name-section');
+    const imageSection = document.getElementById('animal-image-section');
+    const nameEl = document.getElementById('animal-display-name');
+    const imageEl = document.getElementById('animal-display-image');
+    
+    // Set background colors - earthy/natural tones for animals
+    const hue = (index * 18) % 360;
+    nameSection.style.background = `linear-gradient(135deg, hsl(${hue}, 50%, 92%) 0%, hsl(${hue + 20}, 50%, 88%) 100%)`;
+    imageSection.style.background = `linear-gradient(135deg, hsl(${hue}, 20%, 98%) 0%, hsl(${hue + 20}, 20%, 96%) 100%)`;
+    
+    // Update animal name
+    nameEl.textContent = item.name;
+    nameEl.style.color = `hsl(${hue}, 50%, 35%)`;
+    
+    // Update image
+    if (item.image) {
+        imageEl.innerHTML = `<img src="${item.image}" alt="${item.name}" class="animal-display-photo" onerror="this.outerHTML='<span class=\\'animal-emoji-fallback\\'>${item.emoji}</span>'">`;
+    } else {
+        imageEl.innerHTML = `<span class="animal-emoji-fallback">${item.emoji}</span>`;
+    }
+    
+    // Update active state on ribbon
+    document.querySelectorAll('.animal-ribbon-item').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+    
+    // Speak the animal name and sound
+    speakEnglish(`${item.name}. The ${item.name} says ${item.sound}`);
+    
+    // Random chance to show reward
+}
+
+function speakCurrentAnimal() {
+    const item = englishAnimals[currentAnimalIndex];
+    speakEnglish(`${item.name}. The ${item.name} says ${item.sound}`);
 }
 
 function handleEnglishAnimalTap(index) {
     const item = englishAnimals[index];
     speakEnglish(`${item.name}. The ${item.name} says ${item.sound}`);
     
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1500);
-    }
 }
 
 function renderVarnamala() {
@@ -878,9 +1061,6 @@ function handleVarnamalaTap(index) {
         speakHindi(`${item.letter} से ${item.word}`);
     }, 800);
     
-    if (Math.random() < 0.3) {
-        setTimeout(showReward, 2000);
-    }
 }
 
 function renderHindiWords() {
@@ -904,9 +1084,6 @@ function handleHindiWordTap(index) {
     const item = hindiWordsData[index];
     speakHindi(item.word);
     
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
 }
 
 function renderHindiBodyParts() {
@@ -936,18 +1113,12 @@ function renderHindiBodyParts() {
 
 function speakHindiBodyPart(name) {
     speakHindi(name);
-    if (Math.random() < 0.3) {
-        setTimeout(showReward, 800);
-    }
 }
 
 function handleHindiBodyPartTap(index) {
     const part = hindiBodyParts[index];
     speakHindi(part.name);
 
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
 }
 
 function renderHindiAnimals() {
@@ -971,9 +1142,6 @@ function handleHindiAnimalTap(index) {
     const item = hindiAnimals[index];
     speakHindi(item.name);
     
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
 }
 
 function renderNumbers() {
@@ -1001,32 +1169,65 @@ function handleNumberTap(index) {
 
     speakEnglish(item.word);
 
-    if (Math.random() < 0.3) {
-        setTimeout(showReward, 2000);
-    }
 }
 
 function renderShapes() {
-    const container = document.getElementById('shapes-container');
+    const ribbon = document.getElementById('shapes-ribbon');
     
-    container.innerHTML = shapesData.map((shape, index) => `
-        <div class="shape-card" onclick="handleShapeTap(${index})">
-            <svg class="shape-svg" viewBox="0 0 80 80" style="color: ${shape.color};">
+    // Render small shape selector ribbon at bottom
+    ribbon.innerHTML = shapesData.map((shape, index) => `
+        <div class="shape-ribbon-item ${index === 0 ? 'active' : ''}" 
+             data-index="${index}"
+             onclick="selectShapeFullscreen(${index})">
+            <svg viewBox="0 0 80 80" style="color: ${shape.color};">
                 ${shape.svg}
             </svg>
-            <div class="shape-name">${shape.name}</div>
-            <div style="color: #666; font-size: 0.9rem;">${shape.hindi}</div>
         </div>
     `).join('');
+    
+    // Show the first shape by default
+    selectShapeFullscreen(0);
+}
+
+let currentShapeIndex = 0;
+
+function selectShapeFullscreen(index) {
+    currentShapeIndex = index;
+    const shape = shapesData[index];
+    
+    // Update the large display area
+    const displayArea = document.getElementById('shapes-display-area');
+    const svgContainer = document.getElementById('shape-display-svg');
+    const nameEl = document.getElementById('shape-display-name');
+    const hindiEl = document.getElementById('shape-display-hindi');
+    
+    // Set a light background that complements the shape color
+    displayArea.style.background = `linear-gradient(135deg, ${shape.color}15 0%, ${shape.color}30 100%)`;
+    
+    svgContainer.innerHTML = `<svg viewBox="0 0 80 80" style="color: ${shape.color};">${shape.svg}</svg>`;
+    nameEl.textContent = shape.name;
+    nameEl.style.color = shape.color;
+    hindiEl.textContent = shape.hindi;
+    
+    // Update active state on ribbon
+    document.querySelectorAll('.shape-ribbon-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
+    
+    // Speak the shape name
+    speakEnglish(`This is a ${shape.name}`);
+    
+    // Random chance to show reward
+}
+
+function speakCurrentShape() {
+    const shape = shapesData[currentShapeIndex];
+    speakEnglish(`This is a ${shape.name}`);
 }
 
 function handleShapeTap(index) {
-    const shape = shapesData[index];
-    speakEnglish(`This is a ${shape.name}`);
-    
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
+    // Legacy function - kept for compatibility
+    selectShapeFullscreen(index);
 }
 
 function renderColors() {
@@ -1049,9 +1250,61 @@ function handleColorTap(index) {
     const color = colorsData[index];
     speakEnglish(color.name);
     
-    if (Math.random() < 0.25) {
-        setTimeout(showReward, 1000);
-    }
+}
+
+// ==========================================
+// Colors Fullscreen View
+// ==========================================
+let currentColorIndex = 0;
+
+function renderColorsFullscreen() {
+    const ribbon = document.getElementById('colors-ribbon');
+    
+    // Render small color selector ribbon at bottom
+    ribbon.innerHTML = colorsData.map((color, index) => `
+        <div class="color-ribbon-item ${index === 0 ? 'active' : ''}" 
+             data-index="${index}"
+             style="background: ${color.color};"
+             onclick="selectColorFullscreen(${index})">
+        </div>
+    `).join('');
+    
+    // Show the first color by default
+    selectColorFullscreen(0);
+}
+
+function selectColorFullscreen(index) {
+    currentColorIndex = index;
+    const color = colorsData[index];
+    
+    // Update the large display area
+    const displayArea = document.getElementById('colors-display-area');
+    const nameEl = document.getElementById('color-display-name');
+    const hindiEl = document.getElementById('color-display-hindi');
+    
+    displayArea.style.background = color.color;
+    nameEl.textContent = color.name;
+    hindiEl.textContent = color.hindi;
+    
+    // Adjust text color for light backgrounds
+    const textColor = (color.name === 'White' || color.name === 'Yellow') ? '#333' : 'white';
+    nameEl.style.color = textColor;
+    hindiEl.style.color = textColor;
+    
+    // Update active state on ribbon
+    document.querySelectorAll('.color-ribbon-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
+    
+    // Speak the color name
+    speakEnglish(color.name);
+    
+    // Random chance to show reward
+}
+
+function speakCurrentColor() {
+    const color = colorsData[currentColorIndex];
+    speakEnglish(color.name);
 }
 
 // ==========================================
@@ -1127,6 +1380,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update stars display
     updateStarsDisplay();
     
+    // Update voiceover icon based on saved state
+    updateVoiceoverIcon();
+    
     // Section card clicks (home screen)
     document.querySelectorAll('.section-card').forEach(card => {
         card.addEventListener('click', () => {
@@ -1144,7 +1400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Back buttons
-    document.querySelectorAll('.back-btn').forEach(btn => {
+    document.querySelectorAll('.back-btn, .colors-fullscreen-back-btn, .shapes-fullscreen-back-btn, .alphabets-fullscreen-back-btn, .words-fullscreen-back-btn, .animals-fullscreen-back-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.back;
             if (target === 'home') {
@@ -1155,11 +1411,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Reward modal click to dismiss
-    document.getElementById('reward-modal').addEventListener('click', () => {
-        document.getElementById('reward-modal').classList.add('hidden');
-    });
+    // Keyboard navigation for fullscreen views (arrow keys)
+    document.addEventListener('keydown', handleKeyboardNavigation);
 });
+
+// ==========================================
+// Keyboard Navigation
+// ==========================================
+function handleKeyboardNavigation(e) {
+    // Only handle arrow keys
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    
+    // Check which screen is active and navigate accordingly
+    const alphabetsPage = document.getElementById('alphabets-page');
+    const wordsPage = document.getElementById('english-words-page');
+    const animalsPage = document.getElementById('english-animals-page');
+    const colorsPage = document.getElementById('colors-fullscreen-page');
+    const shapesPage = document.getElementById('shapes-page');
+    
+    // Only enable keyboard nav on laptop view (width >= 1100px) for pages with dual layouts
+    const isLaptopView = window.innerWidth >= 1100;
+    
+    if (alphabetsPage && alphabetsPage.classList.contains('active') && isLaptopView) {
+        if (e.key === 'ArrowLeft') {
+            const newIndex = (currentAlphabetIndex - 1 + alphabetsData.length) % alphabetsData.length;
+            selectAlphabetFullscreen(newIndex);
+        } else if (e.key === 'ArrowRight') {
+            const newIndex = (currentAlphabetIndex + 1) % alphabetsData.length;
+            selectAlphabetFullscreen(newIndex);
+        }
+        e.preventDefault();
+    } else if (wordsPage && wordsPage.classList.contains('active') && isLaptopView) {
+        if (e.key === 'ArrowLeft') {
+            const newIndex = (currentWordIndex - 1 + englishWordsData.length) % englishWordsData.length;
+            selectWordFullscreen(newIndex);
+        } else if (e.key === 'ArrowRight') {
+            const newIndex = (currentWordIndex + 1) % englishWordsData.length;
+            selectWordFullscreen(newIndex);
+        }
+        e.preventDefault();
+    } else if (animalsPage && animalsPage.classList.contains('active') && isLaptopView) {
+        if (e.key === 'ArrowLeft') {
+            const newIndex = (currentAnimalIndex - 1 + englishAnimals.length) % englishAnimals.length;
+            selectAnimalFullscreen(newIndex);
+        } else if (e.key === 'ArrowRight') {
+            const newIndex = (currentAnimalIndex + 1) % englishAnimals.length;
+            selectAnimalFullscreen(newIndex);
+        }
+        e.preventDefault();
+    } else if (colorsPage && colorsPage.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+            const newIndex = (currentColorIndex - 1 + colorsData.length) % colorsData.length;
+            selectColorFullscreen(newIndex);
+        } else if (e.key === 'ArrowRight') {
+            const newIndex = (currentColorIndex + 1) % colorsData.length;
+            selectColorFullscreen(newIndex);
+        }
+        e.preventDefault();
+    } else if (shapesPage && shapesPage.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+            const newIndex = (currentShapeIndex - 1 + shapesData.length) % shapesData.length;
+            selectShapeFullscreen(newIndex);
+        } else if (e.key === 'ArrowRight') {
+            const newIndex = (currentShapeIndex + 1) % shapesData.length;
+            selectShapeFullscreen(newIndex);
+        }
+        e.preventDefault();
+    }
+}
 
 // ==========================================
 // Service Worker Registration
